@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin - Carthage Café</title>
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
@@ -15,13 +16,13 @@
     <h2>Ajouter / Modifier un produit</h2>
 
     <form id="product-form">
-      <label for="id">ID du produit (unique)</label>
+      <label>ID du produit (unique)</label>
       <input type="text" id="id" required>
 
-      <label for="nom">Nom</label>
+      <label>Nom</label>
       <input type="text" id="nom" required>
 
-      <label for="categorie">Catégorie</label>
+      <label>Catégorie</label>
       <select id="categorie" required>
         <option value="cafe">Café</option>
         <option value="boisson">Boisson</option>
@@ -29,14 +30,14 @@
         <option value="autre">Autre</option>
       </select>
 
-      <label for="prix">Prix (en CHF)</label>
+      <label>Prix (CHF)</label>
       <input type="number" id="prix" step="0.1" required>
 
       <button type="submit">Enregistrer</button>
     </form>
 
     <h2>Liste des produits</h2>
-    <table border="1">
+    <table>
       <thead>
         <tr>
           <th>ID</th>
@@ -46,20 +47,16 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody id="products-table-body">
-        <!-- Rempli par admin.js -->
-      </tbody>
+      <tbody id="products-table-body"></tbody>
     </table>
   </main>
 
-  <!-- Protection + déconnexion -->
   <script type="module">
     import { logout, protectAdmin } from "./auth.js";
     window.logout = logout;
     protectAdmin();
   </script>
 
-  <!-- Logique Firestore admin (CRUD) -->
   <script type="module" src="admin.js"></script>
 
 </body>
