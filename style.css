@@ -23,12 +23,6 @@ body {
   border-bottom: 3px solid var(--doré);
 }
 
-.logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 0.5rem;
-}
-
 .header h1 {
   margin: 0;
   font-size: 1.8rem;
@@ -82,37 +76,7 @@ nav a:hover {
   margin-bottom: 1rem;
 }
 
-/* BUTTONS */
-.btn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn-primary {
-  background: var(--doré);
-  color: var(--noir);
-}
-
-.btn-primary:hover {
-  background: #f0c76a;
-}
-
-.btn-outline {
-  border: 1px solid var(--doré);
-  color: var(--doré);
-  background: transparent;
-}
-
-.btn-outline:hover {
-  background: var(--doré);
-  color: var(--noir);
-}
-
-/* --- MENU MODERNE ALIGNÉ --- */
+/* --- MENU ALIGNÉ --- */
 
 .menu-grid {
   display: flex;
@@ -120,7 +84,6 @@ nav a:hover {
   gap: 12px;
 }
 
-/* Ligne du menu */
 .menu-item {
   display: flex;
   justify-content: space-between;
@@ -131,21 +94,31 @@ nav a:hover {
   border: 1px solid var(--bois-foncé);
 }
 
-/* Nom du produit */
+.menu-info {
+  flex: 1;
+}
+
 .menu-item-name {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--blanc);
 }
 
-/* Prix aligné à droite */
+/* Colonne droite : prix + bouton */
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ALIGNEMENT PARFAIT DES PRIX */
 .menu-item-price {
   font-size: 1.1rem;
   font-weight: bold;
   color: var(--doré);
-  min-width: 70px;
-  text-align: right;
-  margin-right: 15px;
+  width: 90px;         /* largeur FIXE */
+  text-align: right;   /* aligné à droite */
+  display: inline-block;
 }
 
 /* Bouton Ajouter */
@@ -165,7 +138,7 @@ nav a:hover {
   background: #f0c76a;
 }
 
-/* Version mobile */
+/* MOBILE */
 @media (max-width: 600px) {
   .menu-item {
     flex-direction: column;
@@ -173,29 +146,14 @@ nav a:hover {
     gap: 8px;
   }
 
+  .menu-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .menu-item-price {
     text-align: left;
-    margin-right: 0;
   }
-
-  .add-to-cart {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-/* CART */
-.cart-summary {
-  background: var(--noir);
-  border: 1px solid var(--bois);
-  padding: 1rem;
-  border-radius: 10px;
-}
-
-.cart-total {
-  color: var(--doré);
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
 }
 
 /* FOOTER */
