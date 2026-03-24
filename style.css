@@ -1,39 +1,49 @@
 :root {
+  /* Couleurs de fond (Thème sombre) */
   --noir: #0d0d0d;
   --noir-clair: #1a1a1a;
-  --doré: #d4a44a;
-  --bois: #5a3e2b;
-  --bois-foncé: #3b261a;
   --blanc: #f5f2eb;
   --gris: #cfcac2;
+
+  /* Couleurs de la marque (Inspirées du logo Carthage) */
+  --doré: #d4a44a;           /* Or du dôme, des palmiers et de la tasse */
+  --rouge-carthage: #7A1C1C; /* Bordeaux profond du texte "CARTHAGE" */
+  --vert-carthage: #1E5142;  /* Vert élégant du texte "CAFÉ" et des bordures */
+
+  /* Couleurs de la devanture */
+  --bois-clair: #c8955b;     /* Bois lumineux rappelant ta façade */
+  --bois-foncé: #8b5a2b;
 }
 
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: var(--noir);
   color: var(--blanc);
 }
 
 /* HEADER */
 .header {
-  background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
-  padding: 1.5rem 1rem;
+  /* Dégradé subtil utilisant le rouge de ta marque vers le noir */
+  background: linear-gradient(180deg, var(--rouge-carthage), var(--noir));
+  padding: 2rem 1rem;
   text-align: center;
   border-bottom: 3px solid var(--doré);
 }
 
 .header h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   color: var(--doré);
   letter-spacing: 3px;
   text-transform: uppercase;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
 }
 
 .header p {
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   color: var(--gris);
+  font-size: 1.1rem;
 }
 
 /* NAVIGATION */
@@ -41,39 +51,49 @@ nav {
   background: var(--noir-clair);
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1rem;
-  padding: 0.8rem;
-  border-bottom: 2px solid var(--bois-foncé);
+  padding: 1rem;
+  border-bottom: 2px solid var(--vert-carthage); /* Accent vert */
 }
 
 nav a {
-  color: var(--doré);
+  color: var(--blanc);
   text-decoration: none;
-  padding: 0.4rem 1rem;
-  border: 1px solid var(--doré);
-  border-radius: 20px;
-  transition: 0.2s;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid var(--vert-carthage);
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
-nav a:hover {
-  background: var(--doré);
-  color: var(--noir);
+nav a:hover, nav a.active {
+  background: var(--vert-carthage);
+  color: var(--blanc);
+  box-shadow: 0 0 10px rgba(30, 81, 66, 0.6);
 }
 
 /* SECTIONS */
 .section {
   background: var(--noir-clair);
-  margin: 1.5rem auto;
-  padding: 1.5rem;
+  margin: 2rem auto;
+  padding: 2rem;
   border-radius: 12px;
   max-width: 900px;
-  border: 1px solid var(--bois-foncé);
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  /* Utilisation du bois clair pour rappeler l'extérieur du café */
+  border: 1px solid var(--bois-clair);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
 
 .section h2 {
   color: var(--doré);
-  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 1px solid rgba(200, 149, 91, 0.3); /* Ligne boisée transparente */
+  padding-bottom: 0.8rem;
 }
 
 /* --- MENU ALIGNÉ --- */
@@ -81,7 +101,7 @@ nav a:hover {
 .menu-grid {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
 }
 
 .menu-item {
@@ -89,9 +109,17 @@ nav a:hover {
   justify-content: space-between;
   align-items: center;
   background: var(--noir);
-  padding: 0.8rem 1rem;
+  padding: 1rem 1.2rem;
   border-radius: 10px;
-  border: 1px solid var(--bois-foncé);
+  /* Ligne rouge à gauche pour l'identité visuelle */
+  border-left: 4px solid var(--rouge-carthage); 
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.menu-item:hover {
+  transform: translateX(5px);
+  border-left-color: var(--doré);
+  background: #141414;
 }
 
 .menu-info {
@@ -99,21 +127,28 @@ nav a:hover {
 }
 
 .menu-item-name {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--blanc);
+  margin-bottom: 0.3rem;
+}
+
+.menu-item-desc {
+  font-size: 0.9rem;
+  color: var(--gris);
+  font-style: italic;
 }
 
 /* Colonne droite : prix + bouton */
 .menu-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
 }
 
 /* ALIGNEMENT PARFAIT DES PRIX */
 .menu-item-price {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: var(--doré);
   width: 90px;         /* largeur FIXE */
@@ -123,19 +158,21 @@ nav a:hover {
 
 /* Bouton Ajouter */
 .add-to-cart {
-  background: var(--doré);
-  color: var(--noir);
+  background: var(--rouge-carthage);
+  color: var(--blanc);
   border: none;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.3s ease;
 }
 
 .add-to-cart:hover {
-  background: #f0c76a;
+  background: #992323; /* Rouge légèrement plus clair au survol */
+  box-shadow: 0 4px 8px rgba(122, 28, 28, 0.4);
+  transform: scale(1.05);
 }
 
 /* MOBILE */
@@ -143,12 +180,14 @@ nav a:hover {
   .menu-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 12px;
   }
 
   .menu-right {
     width: 100%;
     justify-content: space-between;
+    border-top: 1px solid #222;
+    padding-top: 12px;
   }
 
   .menu-item-price {
@@ -159,8 +198,10 @@ nav a:hover {
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 1.5rem;
+  padding: 2rem;
   color: var(--gris);
-  margin-top: 2rem;
-  border-top: 2px solid var(--bois-foncé);
+  margin-top: 3rem;
+  background: var(--noir-clair);
+  border-top: 3px solid var(--vert-carthage); /* Rappel du vert final */
+  font-size: 0.9rem;
 }
