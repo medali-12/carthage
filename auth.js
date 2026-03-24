@@ -1,13 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Connexion
+// Connexion (login.html)
 const form = document.getElementById("login-form");
 if (form) {
   form.addEventListener("submit", async (e) => {
@@ -25,7 +24,7 @@ if (form) {
 }
 
 // Protection admin.html
-if (window.location.pathname.includes("admin.html")) {
+export function protectAdmin() {
   onAuthStateChanged(auth, (user) => {
     if (!user) {
       window.location.href = "login.html";
@@ -35,5 +34,7 @@ if (window.location.pathname.includes("admin.html")) {
 
 // Déconnexion
 export function logout() {
-  signOut(auth);
+  signOut(auth).then(() => {
+    window.location.href = "login.html";
+  });
 }
