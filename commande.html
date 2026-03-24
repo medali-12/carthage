@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>CARTHAGE Café — Commander</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>CARTHAGE CAFÉ</h1>
+  <p>Validez votre commande</p>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="menu.html">Menu</a>
+  <a href="commande.html">Commander</a>
+  <a href="contact.html">Adresse</a>
+  <a href="admin.html">Admin</a>
+</nav>
+
+<main class="main">
+  <section class="section grid-2">
+    <div>
+      <h2>Votre panier</h2>
+      <div class="cart-summary">
+        <div class="cart-items"></div>
+        <div class="cart-total">
+          Total : <span class="cart-total-value">0.000 DT</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2>Informations client</h2>
+      <form id="order-form">
+        <div class="form-group">
+          <label for="client-name">Votre nom</label>
+          <input type="text" id="client-name" placeholder="Ex : Ahmed">
+        </div>
+        <div class="form-group">
+          <label for="client-note">Message (optionnel)</label>
+          <textarea id="client-note" placeholder="Ex : Sans sucre, à emporter…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer la commande</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  CARTHAGE Café — Merci pour votre confiance
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

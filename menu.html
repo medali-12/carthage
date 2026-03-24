@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>CARTHAGE Café — Menu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>CARTHAGE CAFÉ</h1>
+  <p>Découvrez notre menu</p>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="menu.html">Menu</a>
+  <a href="commande.html">Commander</a>
+  <a href="contact.html">Adresse</a>
+  <a href="admin.html">Admin</a>
+</nav>
+
+<main class="main">
+  <section class="section grid-2">
+    <div>
+      <h2>Menu</h2>
+
+      <div class="menu-category">
+        <h3>Boissons chaudes</h3>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Café turc</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">0.500 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Café turc', price:0.500})">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Café noir</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">0.500 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Café noir', price:0.500})">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Thé à la menthe</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">0.800 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Thé à la menthe', price:0.800})">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Nescafé</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">1.200 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Nescafé', price:1.200})">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Cappuccino</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">2.500 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Cappuccino', price:2.500})">Ajouter</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <h3>Boissons froides</h3>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Jus d'orange frais</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">2.500 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:\"Jus d'orange frais\", price:2.500})">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Eau minérale</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">0.500 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Eau minérale', price:0.500})">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Soda</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">1.500 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Soda', price:1.500})">Ajouter</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <h3>Snacks</h3>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Croissant</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">1.500 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Croissant', price:1.500})">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Pain grillé + beurre</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">1.200 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Pain grillé + beurre', price:1.200})">Ajouter</button>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <span class="menu-item-name">Sandwich</span>
+          <div class="menu-item-actions">
+            <span class="menu-item-price">3.500 DT</span>
+            <button class="btn btn-outline" onclick="addToCart({name:'Sandwich', price:3.500})">Ajouter</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div>
+      <div class="cart-summary">
+        <h3>Votre panier</h3>
+        <div class="cart-items"></div>
+        <div class="cart-total">
+          Total : <span class="cart-total-value">0.000 DT</span>
+        </div>
+        <div class="btn-row" style="margin-top:0.6rem">
+          <a href="commande.html" class="btn btn-primary">Valider la commande</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  CARTHAGE Café — El May, Djerba
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

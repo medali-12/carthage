@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>CARTHAGE Café — Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+<header>
+  <h1>CARTHAGE CAFÉ — Admin</h1>
+  <p>Gestion des commandes</p>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="menu.html">Menu</a>
+  <a href="commande.html">Commander</a>
+  <a href="contact.html">Adresse</a>
+  <a href="admin.html">Admin</a>
+</nav>
+
+<main class="main">
+  <section class="section">
+    <h2>Commandes reçues</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Client</th>
+          <th>Détails</th>
+          <th>Total / Actions</th>
+        </tr>
+      </thead>
+      <tbody id="orders-body"></tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  CARTHAGE Café — Interface admin
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
