@@ -1,4 +1,31 @@
-// Clés de stockage
+// ---------------- FIREBASE (menu) ----------------
+
+import { db } from "./firebase.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+async function loadMenu() {
+  const querySnapshot = await getDocs(collection(db, "boissons"));
+  const menuDiv = document.getElementById("menu");
+
+  if (!menuDiv) return;
+
+  menuDiv.innerHTML = "";
+
+  querySnapshot.forEach((doc) => {
+    const item = doc.data();
+
+    menuDiv.innerHTML += `
+      <div class="menu-item">
+        <h3>${item.name}</h3>
+        <p>${item.price} DT</p>
+        <button onclick='addToCart(${JSON.stringify(item)})'>Ajouter</button>
+      </div>
+    `;
+  });
+}
+
+// ---------------- CLÉS DE STOCKAGE ----------------
+
 const CART_KEY = 'carthage_panier';
 const ORDERS_KEY = 'carthage_commandes';
 
@@ -200,6 +227,11 @@ function protectAdmin() {
 // ---------------- INITIALISATION ----------------
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Charger le menu Firestore
+  if (document.getElementById("menu")) {
+    loadMenu();
+  }
 
   // Panier
   if (document.querySelector('.cart-summary')) {
