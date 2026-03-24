@@ -7,61 +7,64 @@ import { firebaseConfig } from "./firebase-config.js";
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Vérifie si on est sur admin.html
-const form = document.getElementById("product-form");
-const tableBody = document.getElementById("products-table-body");
+// On attend que la page soit chargée
+window.addEventListener("DOMContentLoaded", () => {
 
-// Si on n'est PAS sur admin.html → on arrête le script
-if (!form || !tableBody) {
-  console.warn("admin.js chargé mais pas sur admin.html — script ignoré.");
-  return;
-}
+  const form = document.getElementById("product-form");
+  const tableBody = document.getElementById("products-table-body");
 
-// Ajouter / modifier produit
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  // Si on n'est pas sur admin.html → on arrête
+  if (!form || !tableBody) {
+    console.warn("admin.js chargé mais pas sur admin.html — script ignoré.");
+    return;
+  }
 
-  const id = document.getElementById("id").value;
-  const nom = document.getElementById("nom").value;
-  const categorie = document.getElementById("categorie").value;
-  const prix = parseFloat(document.getElementById("prix").value);
+  // Ajouter / modifier produit
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  await setDoc(doc(db, "produits", id), {
-    nom,
-    categorie,
-    prix
+    const id = document.getElementById("id").value;
+    const nom = document.getElementById("nom").value;
+    const categorie = document.getElementById("categorie").value;
+    const prix = parseFloat(document.getElementById("prix").value);
+
+    await setDoc(doc(db, "produits", id), {
+      nom,
+      categorie,
+      prix
+    });
+
+    form.reset();
+    loadProducts();
   });
 
+  // Charger produits
+  async function loadProducts() {
+    tableBody.innerHTML = "";
+
+    const querySnapshot = await getDocs(collection(db, "produits"));
+    querySnapshot.forEach((docSnap) => {
+      const p = docSnap.data();
+
+      tableBody.innerHTML += `
+        <tr>
+          <td>${docSnap.id}</td>
+          <td>${p.nom}</td>
+          <td>${p.categorie}</td>
+          <td>${p.prix} CHF</td>
+          <td>
+            <button onclick="deleteProduct('${docSnap.id}')">Supprimer</button>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  window.deleteProduct = async function(id) {
+    await deleteDoc(doc(db, "produits", id));
+    loadProducts();
+  };
+
+  // Charger au démarrage
   loadProducts();
-  form.reset();
 });
-
-// Charger produits
-async function loadProducts() {
-  tableBody.innerHTML = "";
-
-  const querySnapshot = await getDocs(collection(db, "produits"));
-  querySnapshot.forEach((docSnap) => {
-    const p = docSnap.data();
-
-    tableBody.innerHTML += `
-      <tr>
-        <td>${docSnap.id}</td>
-        <td>${p.nom}</td>
-        <td>${p.categorie}</td>
-        <td>${p.prix} CHF</td>
-        <td>
-          <button onclick="deleteProduct('${docSnap.id}')">Supprimer</button>
-        </td>
-      </tr>
-    `;
-  });
-}
-
-window.deleteProduct = async function(id) {
-  await deleteDoc(doc(db, "produits", id));
-  loadProducts();
-};
-
-// Charger au démarrage
-loadProducts();
