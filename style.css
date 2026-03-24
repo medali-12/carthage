@@ -15,139 +15,140 @@ body {
   color: var(--blanc);
 }
 
-/* HEADER */
-.header {
+/* HEADER ADMIN */
+header {
   background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
-  padding: 1.5rem 1rem;
-  text-align: center;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 3px solid var(--doré);
 }
 
-.logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 0.5rem;
-}
-
-.header h1 {
+header h1 {
   margin: 0;
   font-size: 1.8rem;
   color: var(--doré);
-  letter-spacing: 3px;
   text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
-.header p {
-  margin-top: 0.3rem;
-  color: var(--gris);
-}
-
-/* NAVIGATION */
-nav {
-  background: var(--noir-clair);
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 0.8rem;
-  border-bottom: 2px solid var(--bois-foncé);
-}
-
-nav a {
-  color: var(--doré);
-  text-decoration: none;
-  padding: 0.4rem 1rem;
-  border: 1px solid var(--doré);
+header button {
+  padding: 0.6rem 1.2rem;
+  background: var(--doré);
+  color: var(--noir);
+  border: none;
   border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
   transition: 0.2s;
 }
 
-nav a:hover {
-  background: var(--doré);
-  color: var(--noir);
+header button:hover {
+  background: #f0c76a;
 }
 
-/* SECTIONS */
-.section {
-  background: var(--noir-clair);
-  margin: 1.5rem auto;
-  padding: 1.5rem;
-  border-radius: 12px;
+/* SECTION ADMIN */
+main {
   max-width: 900px;
+  margin: 2rem auto;
+  background: var(--noir-clair);
+  padding: 2rem;
+  border-radius: 12px;
   border: 1px solid var(--bois-foncé);
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 
-.section h2 {
+main h2 {
   color: var(--doré);
   margin-bottom: 1rem;
 }
 
-/* BUTTONS */
-.btn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn-primary {
-  background: var(--doré);
-  color: var(--noir);
-}
-
-.btn-primary:hover {
-  background: #f0c76a;
-}
-
-.btn-outline {
-  border: 1px solid var(--doré);
-  color: var(--doré);
-  background: transparent;
-}
-
-.btn-outline:hover {
-  background: var(--doré);
-  color: var(--noir);
-}
-
-/* MENU ITEMS */
-.menu-item {
+/* FORMULAIRE */
+form {
   display: flex;
-  justify-content: space-between;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--bois-foncé);
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--noir);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--bois);
 }
 
-.menu-item-name {
+form input,
+form select {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--bois);
+  background: var(--noir-clair);
   color: var(--blanc);
 }
 
-.menu-item-price {
-  color: var(--doré);
+form button {
+  padding: 0.7rem;
+  background: var(--doré);
+  color: var(--noir);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   font-weight: bold;
+  transition: 0.2s;
 }
 
-/* CART */
-.cart-summary {
-  background: var(--noir);
-  border: 1px solid var(--bois);
-  padding: 1rem;
-  border-radius: 10px;
+form button:hover {
+  background: #f0c76a;
 }
 
-.cart-total {
-  color: var(--doré);
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  color: var(--gris);
+/* TABLE PRODUITS */
+table {
+  width: 100%;
   margin-top: 2rem;
-  border-top: 2px solid var(--bois-foncé);
+  border-collapse: collapse;
+  background: var(--noir);
+  border: 1px solid var(--bois-foncé);
+}
+
+th {
+  background: var(--bois);
+  color: var(--doré);
+  padding: 0.8rem;
+  text-transform: uppercase;
+}
+
+td {
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--bois-foncé);
+}
+
+td button {
+  padding: 0.4rem 0.8rem;
+  background: #a83232;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+td button:hover {
+  background: #d64545;
+}
+
+/* LOGIN PAGE */
+.login-container {
+  width: 300px;
+  margin: 100px auto;
+  background: var(--noir-clair);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--bois);
+  text-align: center;
+}
+
+.login-container h2 {
+  color: var(--doré);
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
 }
