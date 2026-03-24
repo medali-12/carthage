@@ -22,6 +22,8 @@
 </nav>
 
 <main class="main">
+
+  <!-- Commandes -->
   <section class="section">
     <h2>Commandes reçues</h2>
 
@@ -39,88 +41,25 @@
     </table>
   </section>
 
+  <!-- Modifier un prix (UN SEUL BLOC) -->
   <section class="section">
     <h2>Modifier un prix</h2>
 
     <label>ID du produit :</label>
-    <input id="id" placeholder="ex: cafe">
+    <input id="id" placeholder="ex: expresso">
 
     <label>Nouveau prix :</label>
     <input id="price" type="number">
 
     <button id="save">Enregistrer</button>
   </section>
+
 </main>
 
 <footer>
   CARTHAGE Café — Interface admin
 </footer>
 
-<!-- Scripts à la fin -->
-<script type="module" src="admin.js"></script>
-<script type="module" src="app.js"></script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>CARTHAGE Café — Admin</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body class="admin-page">
-
-<header>
-  <h1>CARTHAGE CAFÉ — Admin</h1>
-  <p>Gestion des commandes</p>
-</header>
-
-<nav>
-  <a href="index.html">Accueil</a>
-  <a href="menu.html">Menu</a>
-  <a href="commande.html">Commander</a>
-  <a href="contact.html">Adresse</a>
-  <a href="admin.html">Admin</a>
-</nav>
-
-<main class="main">
-  <section class="section">
-    <h2>Commandes reçues</h2>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Date</th>
-          <th>Client</th>
-          <th>Détails</th>
-          <th>Total / Actions</th>
-        </tr>
-      </thead>
-      <tbody id="orders-body"></tbody>
-    </table>
-  </section>
-
-  <section class="section">
-    <h2>Modifier un prix</h2>
-
-    <label>ID du produit :</label>
-    <input id="id" placeholder="ex: cafe">
-
-    <label>Nouveau prix :</label>
-    <input id="price" type="number">
-
-    <button id="save">Enregistrer</button>
-  </section>
-</main>
-
-<footer>
-  CARTHAGE Café — Interface admin
-</footer>
-
-<!-- Scripts à la fin -->
 <script type="module" src="admin.js"></script>
 <script type="module" src="app.js"></script>
 
