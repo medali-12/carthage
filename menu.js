@@ -11,6 +11,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const menuContainer = document.getElementById("menu");
 
+  if (!menuContainer) {
+    console.error("ERREUR : L'élément #menu est introuvable !");
+    return;
+  }
+
   async function loadMenu() {
     menuContainer.innerHTML = "<p>Chargement...</p>";
 
