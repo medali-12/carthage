@@ -19,3 +19,8 @@ cart.forEach(item => {
 
 // Afficher le total
 totalEl.textContent = total.toFixed(3) + " DT";
+
+// Bouton valider
+document.getElementById("valider").addEventListener("click", () => {
+  alert("Commande validée ! (fonction à compléter)");
+});
