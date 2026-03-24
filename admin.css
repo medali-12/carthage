@@ -1,0 +1,102 @@
+/* ADMIN PANEL */
+:root {
+  --noir: #0d0d0d;
+  --noir-clair: #1a1a1a;
+  --doré: #d4a44a;
+  --bois: #5a3e2b;
+  --bois-foncé: #3b261a;
+  --blanc: #f5f2eb;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--noir);
+  color: var(--blanc);
+}
+
+/* HEADER ADMIN */
+header {
+  background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--doré);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--doré);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+header button {
+  padding: 0.6rem 1.2rem;
+  background: var(--doré);
+  color: var(--noir);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* FORMULAIRE */
+form {
+  background: var(--noir-clair);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--bois);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form input,
+form select {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--bois);
+  background: var(--noir);
+  color: var(--blanc);
+}
+
+form button {
+  background: var(--doré);
+  color: var(--noir);
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+  background: var(--noir);
+  border: 1px solid var(--bois-foncé);
+}
+
+th {
+  background: var(--bois);
+  color: var(--doré);
+  padding: 0.8rem;
+}
+
+td {
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--bois-foncé);
+}
+
+td button {
+  background: #a83232;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
