@@ -4,32 +4,35 @@ import { getFirestore, collection, getDocs }
 
 import { firebaseConfig } from "./firebase-config.js";
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+window.addEventListener("DOMContentLoaded", () => {
 
-const menuContainer = document.getElementById("menu");
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-async function loadMenu() {
-  menuContainer.innerHTML = "<p>Chargement...</p>";
+  const menuContainer = document.getElementById("menu");
 
-  const querySnapshot = await getDocs(collection(db, "produits"));
+  async function loadMenu() {
+    menuContainer.innerHTML = "<p>Chargement...</p>";
 
-  menuContainer.innerHTML = ""; // vider
+    const querySnapshot = await getDocs(collection(db, "produits"));
 
-  querySnapshot.forEach((docSnap) => {
-    const p = docSnap.data();
+    menuContainer.innerHTML = ""; // vider
 
-    menuContainer.innerHTML += `
-      <div class="menu-item">
-        <span class="menu-item-name">${p.nom}</span>
-        <span class="menu-item-price">${p.prix} DT</span>
-      </div>
-    `;
-  });
+    querySnapshot.forEach((docSnap) => {
+      const p = docSnap.data();
 
-  if (menuContainer.innerHTML.trim() === "") {
-    menuContainer.innerHTML = "<p>Aucun produit pour le moment.</p>";
+      menuContainer.innerHTML += `
+        <div class="menu-item">
+          <span class="menu-item-name">${p.nom}</span>
+          <span class="menu-item-price">${p.prix} DT</span>
+        </div>
+      `;
+    });
+
+    if (menuContainer.innerHTML.trim() === "") {
+      menuContainer.innerHTML = "<p>Aucun produit pour le moment.</p>";
+    }
   }
-}
 
-loadMenu();
+  loadMenu();
+});
