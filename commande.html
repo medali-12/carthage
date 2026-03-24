@@ -2,13 +2,16 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>CARTHAGE Café — Commander</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CARTHAGE Café — Commande</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header>
+
+<header class="header">
   <h1>CARTHAGE CAFÉ</h1>
-  <p>Validez votre commande</p>
+  <p>Votre commande</p>
 </header>
 
 <nav>
@@ -20,38 +23,28 @@
 </nav>
 
 <main class="main">
-  <section class="section grid-2">
-    <div>
-      <h2>Votre panier</h2>
-      <div class="cart-summary">
-        <div class="cart-items"></div>
-        <div class="cart-total">
-          Total : <span class="cart-total-value">0.000 DT</span>
-        </div>
-      </div>
+  <section class="section">
+
+    <h2>Votre panier</h2>
+
+    <div class="cart-items"></div>
+
+    <div class="cart-total">
+      Total : <span class="cart-total-value">0.000 DT</span>
     </div>
 
-    <div>
-      <h2>Informations client</h2>
-      <form id="order-form">
-        <div class="form-group">
-          <label for="client-name">Votre nom</label>
-          <input type="text" id="client-name" placeholder="Ex : Ahmed">
-        </div>
-        <div class="form-group">
-          <label for="client-note">Message (optionnel)</label>
-          <textarea id="client-note" placeholder="Ex : Sans sucre, à emporter…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Envoyer la commande</button>
-      </form>
+    <div class="btn-row" style="margin-top:1rem">
+      <button class="btn btn-primary" id="valider">Valider la commande</button>
     </div>
+
   </section>
 </main>
 
 <footer>
-  CARTHAGE Café — Merci pour votre confiance
+  CARTHAGE Café — El May, Djerba
 </footer>
 
-<script src="app.js"></script>
+<script src="commande.js"></script>
+
 </body>
 </html>
