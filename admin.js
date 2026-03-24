@@ -1,73 +1,68 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { 
-  getAuth, 
-  signInWithEmailAndPassword, 
-  onAuthStateChanged, 
-  signOut 
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, setDoc, doc, getDocs, deleteDoc } 
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Connexion (login.html)
-const form = document.getElementById("login-form");
-if (form) {
+// On attend que la page soit chargée
+window.addEventListener("DOMContentLoaded", () => {
+
+  const form = document.getElementById("product-form");
+  const tableBody = document.getElementById("products-table-body");
+
+  if (!form || !tableBody) {
+    console.warn("admin.js chargé mais pas sur admin.html — script ignoré.");
+    return;
+  }
+
+  // Ajouter / modifier produit
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = document.getElementById("email").value;
-    const pass = document.getElementById("password").value;
 
-    try {
-      await signInWithEmailAndPassword(auth, email, pass);
-      window.location.href = "admin.html";
-    } catch (err) {
-      document.getElementById("error").textContent = "Identifiants incorrects";
-    }
+    const id = document.getElementById("id").value;
+    const nom = document.getElementById("nom").value;
+    const categorie = document.getElementById("categorie").value;
+    const prix = parseFloat(document.getElementById("prix").value);
+
+    await setDoc(doc(db, "produits", id), {
+      nom,
+      categorie,
+      prix
+    });
+
+    form.reset();
+    loadProducts();
   });
-}
 
-// Protection admin.html
-export function protectAdmin() {
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      window.location.href = "login.html";
-    }
-  });
-}
+  // Charger produits
+  async function loadProducts() {
+    tableBody.innerHTML = "";
 
-// Déconnexion → retour accueil
-export function logout() {
-  signOut(auth).then(() => {
-    window.location.href = "index.html";
-  });
-}
+    const querySnapshot = await getDocs(collection(db, "produits"));
+    querySnapshot.forEach((docSnap) => {
+      const p = docSnap.data();
 
-/* AUTO-LOGOUT 5 MINUTES — uniquement sur admin.html */
-function startAutoLogout() {
-  if (!window.location.pathname.includes("admin.html")) return;
-
-  let timer;
-
-  function resetTimer() {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      signOut(auth).then(() => {
-        window.location.href = "index.html";
-      });
-    }, 5 * 60 * 1000); // 5 minutes
+      tableBody.innerHTML += `
+        <tr>
+          <td>${docSnap.id}</td>
+          <td>${p.nom}</td>
+          <td>${p.categorie}</td>
+          <td>${p.prix} CHF</td>
+          <td>
+            <button onclick="deleteProduct('${docSnap.id}')">Supprimer</button>
+          </td>
+        </tr>
+      `;
+    });
   }
 
-  window.onload = resetTimer;
-  document.onmousemove = resetTimer;
-  document.onkeydown = resetTimer;
-  document.onclick = resetTimer;
-  document.onscroll = resetTimer;
-}
+  window.deleteProduct = async function(id) {
+    await deleteDoc(doc(db, "produits", id));
+    loadProducts();
+  };
 
-onAuthStateChanged(auth, (user) => {
-  if (user && window.location.pathname.includes("admin.html")) {
-    startAutoLogout();
-  }
+  loadProducts();
 });
