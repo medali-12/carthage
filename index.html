@@ -2,16 +2,13 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carthage Café</title>
+  <title>CARTHAGE Café — Accueil</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<header class="header">
-  <h1>Carthage Café</h1>
-  <p>Bienvenue à El May, Djerba</p>
+<header>
+  <h1>CARTHAGE CAFÉ</h1>
+  <p>Café • Chicha • Thé — El May, Djerba</p>
 </header>
 
 <nav>
@@ -22,29 +19,47 @@
   <a href="admin.html">Admin</a>
 </nav>
 
-<main class="section" style="text-align:center;">
+<main class="main">
+  <section class="section">
+    <h2>Bienvenue au CARTHAGE Café</h2>
+    <p class="lead">
+      Un café traditionnel à El May, Djerba — pour un moment de détente autour d’un café, d’un thé ou d’une chicha.
+    </p>
+    <div class="btn-row">
+      <a href="menu.html" class="btn btn-primary">Voir le menu</a>
+      <a href="commande.html" class="btn btn-outline">Passer une commande</a>
+      <a href="contact.html" class="btn btn-outline">Nous trouver</a>
+    </div>
+  </section>
 
-  <h2>Bienvenue</h2>
-
-  <div style="display:flex; flex-direction:column; gap:15px; max-width:300px; margin:auto;">
-
-    <a href="menu.html" class="btn btn-primary">Voir le menu</a>
-
-    <a href="commande.html" class="btn btn-primary">Passer une commande</a>
-
-    <a href="contact.html" class="btn btn-primary">Nous trouver</a>
-
-    <a href="admin.html" class="btn btn-outline">Ajouter des produits</a>
-
-    <a href="commande.html" class="btn btn-outline">Valider la commande</a>
-
-  </div>
-
+  <section class="section grid-2">
+    <div>
+      <h2>L’ambiance</h2>
+      <p>
+        Bois, lumière douce, discussions entre amis, matchs, chicha et thé à la menthe — un lieu simple et chaleureux.
+      </p>
+      <span class="badge">Ouvert tous les jours</span>
+    </div>
+    <div>
+      <div class="cart-summary">
+        <h3>Votre panier</h3>
+        <div class="cart-items"></div>
+        <div class="cart-total">
+          Total : <span class="cart-total-value">0.000 DT</span>
+        </div>
+        <div class="btn-row" style="margin-top:0.6rem">
+          <a href="menu.html" class="btn btn-outline">Ajouter des produits</a>
+          <a href="commande.html" class="btn btn-primary">Valider la commande</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
-  Carthage Café — El May, Djerba
+  CARTHAGE Café — El May, Route de Robbana, Djerba, Tunisie
 </footer>
 
+<script type="module" src="app.js"></script>
 </body>
 </html>
