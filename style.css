@@ -76,6 +76,47 @@ nav a:hover {
   margin-bottom: 1rem;
 }
 
+/* BOUTONS */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--doré);
+  color: var(--noir);
+}
+
+.btn-primary:hover {
+  background: #f0c76a;
+}
+
+.btn-outline {
+  border: 1px solid var(--doré);
+  color: var(--doré);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--doré);
+  color: var(--noir);
+}
+
+/* ALIGNEMENT DES BOUTONS SUR LA PAGE D'ACCUEIL */
+.btn-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
 /* --- MENU ALIGNÉ --- */
 
 .menu-grid {
@@ -104,7 +145,6 @@ nav a:hover {
   color: var(--blanc);
 }
 
-/* Colonne droite : prix + bouton */
 .menu-right {
   display: flex;
   align-items: center;
@@ -154,6 +194,20 @@ nav a:hover {
   .menu-item-price {
     text-align: left;
   }
+}
+
+/* PANIER */
+.cart-summary {
+  background: var(--noir);
+  border: 1px solid var(--bois);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.cart-total {
+  color: var(--doré);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 /* FOOTER */
