@@ -6,6 +6,7 @@ import { firebaseConfig } from "./firebase-config.js";
 
 window.addEventListener("DOMContentLoaded", () => {
 
+  // Initialiser Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
@@ -16,24 +17,37 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const querySnapshot = await getDocs(collection(db, "produits"));
 
-    menuContainer.innerHTML = "";
+    menuContainer.innerHTML = ""; // vider
 
     querySnapshot.forEach((docSnap) => {
       const p = docSnap.data();
 
+      // Structure HTML compatible avec TON style.css
       menuContainer.innerHTML += `
         <div class="menu-item">
-          <span class="menu-item-name">${p.nom}</span>
-          <span class="menu-item-price">${p.prix} DT</span>
-          <button class="add-to-cart"
-            data-id="${docSnap.id}"
-            data-nom="${p.nom}"
-            data-prix="${p.prix}">
-            Ajouter
-          </button>
+
+          <div class="menu-info">
+            <span class="menu-item-name">${p.nom}</span>
+          </div>
+
+          <div class="menu-right">
+            <span class="menu-item-price">${p.prix} DT</span>
+
+            <button class="add-to-cart"
+              data-id="${docSnap.id}"
+              data-nom="${p.nom}"
+              data-prix="${p.prix}">
+              Ajouter
+            </button>
+          </div>
+
         </div>
       `;
     });
+
+    if (menuContainer.innerHTML.trim() === "") {
+      menuContainer.innerHTML = "<p>Aucun produit pour le moment.</p>";
+    }
   }
 
   loadMenu();
