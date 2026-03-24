@@ -11,17 +11,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const menuContainer = document.getElementById("menu");
 
-  if (!menuContainer) {
-    console.error("ERREUR : L'élément #menu est introuvable !");
-    return;
-  }
-
   async function loadMenu() {
     menuContainer.innerHTML = "<p>Chargement...</p>";
 
     const querySnapshot = await getDocs(collection(db, "produits"));
 
-    menuContainer.innerHTML = ""; // vider
+    menuContainer.innerHTML = "";
 
     querySnapshot.forEach((docSnap) => {
       const p = docSnap.data();
@@ -30,14 +25,36 @@ window.addEventListener("DOMContentLoaded", () => {
         <div class="menu-item">
           <span class="menu-item-name">${p.nom}</span>
           <span class="menu-item-price">${p.prix} DT</span>
+          <button class="add-to-cart"
+            data-id="${docSnap.id}"
+            data-nom="${p.nom}"
+            data-prix="${p.prix}">
+            Ajouter
+          </button>
         </div>
       `;
     });
-
-    if (menuContainer.innerHTML.trim() === "") {
-      menuContainer.innerHTML = "<p>Aucun produit pour le moment.</p>";
-    }
   }
 
   loadMenu();
+
+  // PANIER LOCAL
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // AJOUTER AU PANIER (compatible téléphone)
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-to-cart")) {
+
+      const id = e.target.dataset.id;
+      const nom = e.target.dataset.nom;
+      const prix = parseFloat(e.target.dataset.prix);
+
+      cart.push({ id, nom, prix });
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert(nom + " ajouté au panier !");
+    }
+  });
+
 });
