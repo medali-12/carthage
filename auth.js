@@ -1,6 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  onAuthStateChanged, 
+  signOut 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
@@ -32,9 +37,37 @@ export function protectAdmin() {
   });
 }
 
-// Déconnexion
+// Déconnexion → retour accueil
 export function logout() {
   signOut(auth).then(() => {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   });
 }
+
+/* AUTO-LOGOUT 5 MINUTES — uniquement sur admin.html */
+function startAutoLogout() {
+  if (!window.location.pathname.includes("admin.html")) return;
+
+  let timer;
+
+  function resetTimer() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      signOut(auth).then(() => {
+        window.location.href = "index.html";
+      });
+    }, 5 * 60 * 1000); // 5 minutes
+  }
+
+  window.onload = resetTimer;
+  document.onmousemove = resetTimer;
+  document.onkeydown = resetTimer;
+  document.onclick = resetTimer;
+  document.onscroll = resetTimer;
+}
+
+onAuthStateChanged(auth, (user) => {
+  if (user && window.location.pathname.includes("admin.html")) {
+    startAutoLogout();
+  }
+});
