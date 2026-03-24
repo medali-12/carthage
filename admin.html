@@ -2,79 +2,65 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>CARTHAGE Café — Admin</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Admin - Carthage Café</title>
 </head>
-<body class="admin-page">
+<body>
 
-<header>
-  <h1>CARTHAGE CAFÉ — Admin</h1>
-  <p>Gestion des produits</p>
-</header>
+  <header>
+    <h1>Panel Admin - Carthage Café</h1>
+    <button onclick="logout()">Déconnexion</button>
+  </header>
 
-<nav>
-  <a href="index.html">Accueil</a>
-  <a href="menu.html">Menu</a>
-  <a href="commande.html">Commander</a>
-  <a href="contact.html">Adresse</a>
-  <a href="admin.html">Admin</a>
-</nav>
+  <main>
+    <h2>Ajouter / Modifier un produit</h2>
 
-<main class="main">
-  <section class="section">
+    <form id="product-form">
+      <label for="id">ID du produit (unique)</label>
+      <input type="text" id="id" required>
 
-    <h2>Ajouter / modifier un produit</h2>
+      <label for="nom">Nom</label>
+      <input type="text" id="nom" required>
 
-    <form id="product-form" class="form-grid">
-      <input type="hidden" id="product-id">
+      <label for="categorie">Catégorie</label>
+      <select id="categorie" required>
+        <option value="cafe">Café</option>
+        <option value="boisson">Boisson</option>
+        <option value="chicha">Chicha</option>
+        <option value="autre">Autre</option>
+      </select>
 
-      <div>
-        <label for="product-name">Nom du produit</label>
-        <input type="text" id="product-name" required>
-      </div>
+      <label for="prix">Prix (en CHF)</label>
+      <input type="number" id="prix" step="0.1" required>
 
-      <div>
-        <label for="product-price">Prix (DT)</label>
-        <input type="number" step="0.001" id="product-price" required>
-      </div>
-
-      <div>
-        <label for="product-category">Catégorie</label>
-        <input type="text" id="product-category" placeholder="cafe, chicha, other..." required>
-      </div>
-
-      <div>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-        <button type="button" id="cancel-edit" class="btn btn-outline">Annuler</button>
-      </div>
+      <button type="submit">Enregistrer</button>
     </form>
 
-  </section>
-
-  <section class="section">
     <h2>Liste des produits</h2>
-
-    <table class="table">
+    <table border="1">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nom</th>
-          <th>Prix</th>
           <th>Catégorie</th>
-          <th>Disponible</th>
+          <th>Prix</th>
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody id="products-body">
-        <!-- rempli par admin.js -->
+      <tbody id="products-table-body">
+        <!-- Rempli par admin.js -->
       </tbody>
     </table>
-  </section>
-</main>
+  </main>
 
-<footer>
-  CARTHAGE Café — El May, Djerba
-</footer>
+  <!-- Protection + déconnexion -->
+  <script type="module">
+    import { logout, protectAdmin } from "./auth.js";
+    window.logout = logout;
+    protectAdmin();
+  </script>
 
-<script type="module" src="admin.js"></script>
+  <!-- Logique Firestore admin (CRUD) -->
+  <script type="module" src="admin.js"></script>
+
 </body>
 </html>
