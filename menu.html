@@ -7,7 +7,8 @@
 </head>
 
 <body>
-<header>
+
+<header class="header">
   <h1>CARTHAGE CAFÉ</h1>
   <p>Découvrez notre menu</p>
 </header>
@@ -21,29 +22,12 @@
 </nav>
 
 <main class="main">
-  <section class="section grid-2">
+  <section class="section">
 
-    <!-- COLONNE GAUCHE : MENU FIRESTORE -->
-    <div>
-      <h2>Menu</h2>
+    <h2>Notre Menu</h2>
 
-      <!-- Le menu Firestore s'affiche ici -->
-      <div id="menu" class="menu-grid"></div>
-    </div>
-
-    <!-- COLONNE DROITE : PANIER -->
-    <div>
-      <div class="cart-summary">
-        <h3>Votre panier</h3>
-        <div class="cart-items"></div>
-        <div class="cart-total">
-          Total : <span class="cart-total-value">0.000 DT</span>
-        </div>
-        <div class="btn-row" style="margin-top:0.6rem">
-          <a href="commande.html" class="btn btn-primary">Valider la commande</a>
-        </div>
-      </div>
-    </div>
+    <!-- Le menu Firestore s'affiche ici -->
+    <div id="menu" class="menu-grid"></div>
 
   </section>
 </main>
@@ -52,8 +36,8 @@
   CARTHAGE Café — El May, Djerba
 </footer>
 
-<!-- Charger app.js en module -->
-<script type="module" src="app.js"></script>
+<!-- Charger le script qui lit Firestore -->
+<script type="module" src="menu.js"></script>
 
 </body>
 </html>
