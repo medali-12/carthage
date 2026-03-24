@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
+
+<header class="header">
   <h1>CARTHAGE CAFÉ</h1>
   <p>Café • Chicha • Thé — El May, Djerba</p>
 </header>
@@ -20,15 +21,23 @@
 </nav>
 
 <main class="main">
+
   <section class="section">
     <h2>Bienvenue au CARTHAGE Café</h2>
+
     <p class="lead">
       Un café traditionnel à El May, Djerba — pour un moment de détente autour d’un café, d’un thé ou d’une chicha.
     </p>
-    <div class="btn-row">
+
+    <!-- BOUTONS PRINCIPAUX -->
+    <div class="btn-row" style="display:flex; flex-direction:column; gap:15px; max-width:300px; margin:auto;">
+
       <a href="menu.html" class="btn btn-primary">Voir le menu</a>
+
       <a href="commande.html" class="btn btn-outline">Passer une commande</a>
+
       <a href="contact.html" class="btn btn-outline">Nous trouver</a>
+
     </div>
   </section>
 
@@ -40,20 +49,25 @@
       </p>
       <span class="badge">Ouvert tous les jours</span>
     </div>
+
+    <!-- PANIER -->
     <div>
       <div class="cart-summary">
         <h3>Votre panier</h3>
         <div class="cart-items"></div>
+
         <div class="cart-total">
           Total : <span class="cart-total-value">0.000 DT</span>
         </div>
-        <div class="btn-row" style="margin-top:0.6rem">
+
+        <div class="btn-row" style="margin-top:0.6rem; display:flex; flex-direction:column; gap:10px;">
           <a href="menu.html" class="btn btn-outline">Ajouter des produits</a>
           <a href="commande.html" class="btn btn-primary">Valider la commande</a>
         </div>
       </div>
     </div>
   </section>
+
 </main>
 
 <footer>
