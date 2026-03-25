@@ -1,26 +1,38 @@
-// Charger le panier depuis le stockage local
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, addDoc, collection } 
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const container = document.querySelector(".cart-items");
-const totalEl = document.querySelector(".cart-total-value");
+import { firebaseConfig } from "./firebase-config.js";
 
-let total = 0;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// Afficher les articles du panier
-cart.forEach(item => {
-  container.innerHTML += `
-    <div class="cart-line">
-      <span>${item.nom}</span>
-      <span>${item.prix} DT</span>
-    </div>
-  `;
-  total += item.prix;
-});
+document.getElementById("valider").addEventListener("click", envoyerCommande);
 
-// Afficher le total
-totalEl.textContent = total.toFixed(3) + " DT";
+async function envoyerCommande() {
 
-// Bouton valider
-document.getElementById("valider").addEventListener("click", () => {
-  alert("Commande validée ! (fonction à compléter)");
-});
+  const nom = document.getElementById("nom").value;
+  const table = document.getElementById("table").value;
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let total = 0;
+  cart.forEach(item => total += item.prix);
+
+  if (!nom || !table || cart.length === 0) {
+    alert("Veuillez remplir le nom, la table et ajouter des produits.");
+    return;
+  }
+
+  await addDoc(collection(db, "commandes"), {
+    nom: nom,
+    table: table,
+    panier: cart,
+    total: total,
+    date: new Date()
+  });
+
+  alert("Commande envoyée !");
+  localStorage.removeItem("cart");
+  window.location.href = "index.html";
+}
