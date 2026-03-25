@@ -1,35 +1,51 @@
+// Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, getDocs, collection } 
+import { getFirestore, collection, addDoc }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL }
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-import { firebaseConfig } from "./firebase-config.js";
+// CONFIG FIREBASE (mets ta config ici)
+const firebaseConfig = {
+  apiKey: "TA_CLE_API",
+  authDomain: "TON_PROJET.firebaseapp.com",
+  projectId: "TON_PROJET",
+  storageBucket: "TON_PROJET.appspot.com",
+  messagingSenderId: "xxxx",
+  appId: "xxxx"
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
-async function chargerCommandes() {
-  const container = document.getElementById("commandes");
-
-  const snapshot = await getDocs(collection(db, "commandes"));
-
-  container.innerHTML = "";
-
-  snapshot.forEach(doc => {
-    const c = doc.data();
-
-    container.innerHTML += `
-      <div class="commande">
-        <h3>Client : ${c.nom}</h3>
-        <p>Table : ${c.table}</p>
-        <p>Total : ${c.total} DT</p>
-        <p>Date : ${c.date.toDate().toLocaleString()}</p>
-
-        <ul>
-          ${c.panier.map(item => `<li>${item.nom} — ${item.prix} DT</li>`).join("")}
-        </ul>
-      </div>
-    `;
-  });
+// Fonction upload image
+async function uploadImage(file) {
+  const imageRef = ref(storage, "produits/" + Date.now() + "-" + file.name);
+  await uploadBytes(imageRef, file);
+  return await getDownloadURL(imageRef);
 }
 
-chargerCommandes();
+// Ajouter un produit
+document.getElementById("addProductBtn").addEventListener("click", async () => {
+
+  const nom = document.getElementById("nom").value;
+  const prix = parseFloat(document.getElementById("prix").value);
+  const categorie = document.getElementById("categorie").value;
+  const file = document.getElementById("imageInput").files[0];
+
+  let imageURL = "";
+
+  if (file) {
+    imageURL = await uploadImage(file);
+  }
+
+  await addDoc(collection(db, "produits"), {
+    nom,
+    prix,
+    categorie,
+    image: imageURL
+  });
+
+  alert("Produit ajouté !");
+});
