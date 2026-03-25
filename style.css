@@ -32,20 +32,47 @@ a:hover {
 /* --- BOUTONS GÉNÉRIQUES --- */
 .btn {
   display: inline-block;
-  background: var(--doré);
-  color: var(--noir);
   padding: 10px 18px;
   border-radius: 25px;
-  border: 1px solid var(--doré);
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
   transition: 0.25s;
+  cursor: pointer;
 }
 
-.btn:hover {
+/* Bouton doré (plein) */
+.btn-primary {
+  background: var(--doré);
+  color: var(--noir);
+  border: 1px solid var(--doré);
+}
+
+.btn-primary:hover {
   background: transparent;
   color: var(--doré);
   transform: translateY(-2px);
+}
+
+/* Bouton contour doré */
+.btn-outline {
+  background: transparent;
+  color: var(--doré);
+  border: 1px solid var(--doré);
+}
+
+.btn-outline:hover {
+  background: var(--doré);
+  color: var(--noir);
+  transform: translateY(-2px);
+}
+
+/* Alignement des boutons */
+.btn-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
 }
 
 /* HEADER */
@@ -62,6 +89,11 @@ a:hover {
   color: var(--doré);
   letter-spacing: 3px;
   text-transform: uppercase;
+}
+
+.header p {
+  margin-top: 5px;
+  color: var(--gris);
 }
 
 /* NAVIGATION */
@@ -164,7 +196,8 @@ nav a:hover {
 }
 
 /* --- BOUTONS D'ACCUEIL --- */
-.home-buttons {
+.home-buttons,
+.btn-row {
   display: flex;
   justify-content: center;
   gap: 15px;
