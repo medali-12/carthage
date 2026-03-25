@@ -1,51 +1,84 @@
-// Firebase imports
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc }
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL }
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin — Carthage Café</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-// CONFIG FIREBASE (mets ta config ici)
-const firebaseConfig = {
-  apiKey: "TA_CLE_API",
-  authDomain: "TON_PROJET.firebaseapp.com",
-  projectId: "TON_PROJET",
-  storageBucket: "TON_PROJET.appspot.com",
-  messagingSenderId: "xxxx",
-  appId: "xxxx"
-};
+<body>
+
+<header class="header">
+  <h1>ADMIN — CARTHAGE CAFÉ</h1>
+  <p>Panneau de gestion</p>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="menu.html">Menu</a>
+  <a href="commande.html">Commander</a>
+  <a href="contact.html">Adresse</a>
+  <a href="admin.html">Admin</a>
+  <a href="#" id="logoutBtn">Déconnexion</a>
+</nav>
+
+<main class="main">
+  <section class="section">
+    <h2>Gestion Admin</h2>
+
+    <div style="display:flex; gap:20px; margin-top:30px; justify-content:center;">
+
+      <a class="btn btn-primary" 
+         href="admin-commandes.html"
+         style="padding:20px; font-size:20px; text-align:center; width:200px;">
+        📦 Commandes
+      </a>
+
+      <a class="btn btn-primary" 
+         href="admin-menu.html"
+         style="padding:20px; font-size:20px; text-align:center; width:200px;">
+        🍽️ Menu
+      </a>
+
+      <a class="btn btn-primary" 
+         href="admin-stock.html"
+         style="padding:20px; font-size:20px; text-align:center; width:200px;">
+        📊 Stock
+      </a>
+
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  CARTHAGE Café — El May, Djerba
+</footer>
+
+<!-- 🔐 Protection de la page admin -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } 
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const storage = getStorage(app);
+const auth = getAuth(app);
 
-// Fonction upload image
-async function uploadImage(file) {
-  const imageRef = ref(storage, "produits/" + Date.now() + "-" + file.name);
-  await uploadBytes(imageRef, file);
-  return await getDownloadURL(imageRef);
-}
-
-// Ajouter un produit
-document.getElementById("addProductBtn").addEventListener("click", async () => {
-
-  const nom = document.getElementById("nom").value;
-  const prix = parseFloat(document.getElementById("prix").value);
-  const categorie = document.getElementById("categorie").value;
-  const file = document.getElementById("imageInput").files[0];
-
-  let imageURL = "";
-
-  if (file) {
-    imageURL = await uploadImage(file);
+// Vérifie si l'utilisateur est connecté
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    window.location.href = "admin-login.html";
   }
-
-  await addDoc(collection(db, "produits"), {
-    nom,
-    prix,
-    categorie,
-    image: imageURL
-  });
-
-  alert("Produit ajouté !");
 });
+
+// Déconnexion
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  signOut(auth).then(() => {
+    window.location.href = "admin-login.html";
+  });
+});
+</script>
+
+</body>
+</html>
