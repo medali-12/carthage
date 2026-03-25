@@ -7,7 +7,7 @@ import { firebaseConfig } from "./firebase-config.js";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔐 Vérification de connexion
+// 🔐 Vérification si l'utilisateur est connecté
 onAuthStateChanged(auth, user => {
   if (!user) {
     // Pas connecté → redirection vers login
@@ -16,8 +16,8 @@ onAuthStateChanged(auth, user => {
 });
 
 // 🔐 Déconnexion
-export function logout() {
+document.getElementById("logoutBtn").addEventListener("click", () => {
   signOut(auth).then(() => {
     window.location.href = "admin-login.html";
   });
-}
+});
