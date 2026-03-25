@@ -2,62 +2,37 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Admin - Carthage Café</title>
-  <link rel="stylesheet" href="admin.css">
+  <title>Admin — Commandes</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <header>
-    <h1>Panel Admin - Carthage Café</h1>
-    <button onclick="logout()">Déconnexion</button>
-  </header>
+<header class="header">
+  <h1>ADMIN — CARTHAGE CAFÉ</h1>
+  <p>Gestion des commandes</p>
+</header>
 
-  <main>
-    <h2>Ajouter / Modifier un produit</h2>
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="menu.html">Menu</a>
+  <a href="commande.html">Commander</a>
+  <a href="admin.html">Admin</a>
+</nav>
 
-    <form id="product-form">
-      <label>ID du produit (unique)</label>
-      <input type="text" id="id" required>
+<main class="main">
+  <section class="section">
+    <h2>Commandes reçues</h2>
 
-      <label>Nom</label>
-      <input type="text" id="nom" required>
+    <div id="commandes"></div>
 
-      <label>Catégorie</label>
-      <select id="categorie" required>
-        <option value="cafe">Café</option>
-        <option value="boisson">Boisson</option>
-        <option value="chicha">Chicha</option>
-        <option value="autre">Autre</option>
-      </select>
+  </section>
+</main>
 
-      <label>Prix (CHF)</label>
-      <input type="number" id="prix" step="0.1" required>
+<footer>
+  CARTHAGE Café — El May, Djerba
+</footer>
 
-      <button type="submit">Enregistrer</button>
-    </form>
-
-    <h2>Liste des produits</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Catégorie</th>
-          <th>Prix</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="products-table-body"></tbody>
-    </table>
-  </main>
-
-  <script type="module">
-    import { logout, protectAdmin } from "./auth.js";
-    window.logout = logout;
-    protectAdmin();
-  </script>
-
-  <script type="module" src="admin.js"></script>
-
+<script type="module" src="admin.js"></script>
 </body>
 </html>
