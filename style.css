@@ -218,3 +218,24 @@ footer {
   margin-top: 2rem;
   border-top: 2px solid var(--bois-foncé);
 }
+/* TITRE DE CATÉGORIE AVEC IMAGE */
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.category-title h2 {
+  color: var(--doré);
+  margin: 0;
+}
+
+.category-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
