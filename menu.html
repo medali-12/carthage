@@ -9,8 +9,7 @@
 <body>
 
 <header class="header">
-  <h1>CARTHAGE CAFÉ</h1>
-  <p>Café • Chicha • Thé — El May, Djerba</p>
+  <h1>Menu — Carthage Café</h1>
 </header>
 
 <nav>
@@ -18,17 +17,30 @@
   <a href="menu.html">Menu</a>
   <a href="commande.html">Commander</a>
   <a href="contact.html">Adresse</a>
-  <a href="admin.html">Admin</a>
 </nav>
 
 <main class="main">
+
   <section class="section">
-    <h2>Menu</h2>
-
-    <!-- Le JS va remplir ce conteneur -->
-    <div id="menu"></div>
-
+    <h2>Café</h2>
+    <div id="cafe" class="menu-grid"></div>
   </section>
+
+  <section class="section">
+    <h2>Boissons</h2>
+    <div id="boisson" class="menu-grid"></div>
+  </section>
+
+  <section class="section">
+    <h2>Chicha</h2>
+    <div id="chicha" class="menu-grid"></div>
+  </section>
+
+  <section class="section">
+    <h2>Autres</h2>
+    <div id="autre" class="menu-grid"></div>
+  </section>
+
 </main>
 
 <footer>
@@ -36,5 +48,6 @@
 </footer>
 
 <script type="module" src="menu.js"></script>
+
 </body>
 </html>
