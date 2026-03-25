@@ -2,15 +2,14 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Commander — Carthage Café</title>
+  <title>Commande — Carthage Café</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="header">
-  <h1>CARTHAGE CAFÉ</h1>
-  <p>Café • Chicha • Thé — El May, Djerba</p>
+  <h1>Votre Commande</h1>
 </header>
 
 <nav>
@@ -18,26 +17,26 @@
   <a href="menu.html">Menu</a>
   <a href="commande.html">Commander</a>
   <a href="contact.html">Adresse</a>
-  <a href="admin.html">Admin</a>
 </nav>
 
 <main class="main">
+
   <section class="section">
-    <h2>Passer une commande</h2>
-
-    <label>Nom du client</label>
-    <input id="nom" type="text" placeholder="Votre nom">
-
-    <label>Numéro de table</label>
-    <input id="table" type="number" placeholder="Table">
-
-    <h3>Votre panier</h3>
+    <h2>Panier</h2>
     <div id="panier"></div>
 
-    <p>Total : <span id="total">0</span> DT</p>
-
-    <button id="valider" class="btn btn-primary">Valider la commande</button>
+    <h3>Total : <span id="total">0 DT</span></h3>
   </section>
+
+  <section class="section">
+    <h2>Informations Client</h2>
+
+    <input id="nom" type="text" placeholder="Votre nom">
+    <input id="table" type="number" placeholder="Numéro de table">
+
+    <button id="envoyer" class="btn btn-primary">Envoyer la commande</button>
+  </section>
+
 </main>
 
 <footer>
@@ -45,5 +44,6 @@
 </footer>
 
 <script type="module" src="commande.js"></script>
+
 </body>
 </html>
