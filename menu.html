@@ -57,16 +57,31 @@
     <div id="autre" class="menu-grid"></div>
   </section>
 
+  <!-- PANIER -->
+  <section class="section">
+    <h2>Votre panier</h2>
+
+    <div class="cart-items"></div>
+
+    <div class="cart-total">
+      Total : <span class="cart-total-value">0.000 DT</span>
+    </div>
+
+    <div class="btn-row">
+      <a href="commande.html" class="btn btn-primary">Valider la commande</a>
+    </div>
+  </section>
+
 </main>
 
 <footer>
   CARTHAGE Café — El May, Djerba
 </footer>
 
-<!-- IMPORTANT : Firebase d'abord -->
+<!-- Firebase -->
 <script type="module" src="firebase-config.js"></script>
 
-<!-- Ensuite ton script qui utilise Firestore -->
+<!-- Script du menu -->
 <script type="module" src="menu.js"></script>
 
 </body>
