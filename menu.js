@@ -1,99 +1,56 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, getDocs } 
+import { getFirestore, getDocs, collection } 
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 import { firebaseConfig } from "./firebase-config.js";
 
-window.addEventListener("DOMContentLoaded", () => {
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+// Charger le panier existant ou créer un panier vide
+let panier = JSON.parse(localStorage.getItem("panier")) || [];
 
-  const menuContainer = document.getElementById("menu");
+// Fonction pour ajouter un produit au panier
+function ajouterAuPanier(produit) {
+  panier.push(produit);
+  localStorage.setItem("panier", JSON.stringify(panier));
+  alert("Produit ajouté au panier !");
+}
 
-  // Images pour chaque catégorie
-  const categoryImages = {
-    cafe: "images/cafe.jpg",
-    boisson: "images/boisson.jpg",
-    chicha: "images/chicha.jpg",
-    autre: "images/autre.jpg"
-  };
+// Charger les produits depuis Firestore
+async function loadMenu() {
+  const snapshot = await getDocs(collection(db, "produits"));
 
-  async function loadMenu() {
-    menuContainer.innerHTML = "<p>Chargement...</p>";
+  const cafeDiv = document.getElementById("cafe");
+  const boissonDiv = document.getElementById("boisson");
+  const chichaDiv = document.getElementById("chicha");
+  const autreDiv = document.getElementById("autre");
 
-    const querySnapshot = await getDocs(collection(db, "produits"));
+  snapshot.forEach(doc => {
+    const p = doc.data();
 
-    // Regrouper par catégorie
-    const categories = {};
+    const card = document.createElement("div");
+    card.className = "item-card";
 
-    querySnapshot.forEach((docSnap) => {
-      const p = docSnap.data();
-      const cat = p.categorie || "autre";
+    card.innerHTML = `
+      <img src="images/${p.categorie}.jpg" class="item-img">
+      <h3>${p.nom}</h3>
+      <p>${p.prix} DT</p>
+      <button class="btn btn-primary">Ajouter</button>
+    `;
 
-      if (!categories[cat]) categories[cat] = [];
-      categories[cat].push({ id: docSnap.id, ...p });
+    card.querySelector("button").addEventListener("click", () => {
+      ajouterAuPanier({
+        nom: p.nom,
+        prix: p.prix
+      });
     });
 
-    // Affichage
-    menuContainer.innerHTML = "";
-
-    for (const cat in categories) {
-
-      menuContainer.innerHTML += `
-        <div class="category-title">
-          <img src="${categoryImages[cat] || categoryImages.autre}" class="category-icon">
-          <h2>${cat.toUpperCase()}</h2>
-        </div>
-
-        <div class="menu-grid" id="cat-${cat}"></div>
-      `;
-
-      const catDiv = document.getElementById(`cat-${cat}`);
-
-      categories[cat].forEach((p) => {
-        catDiv.innerHTML += `
-          <div class="menu-item">
-
-            <div class="menu-info">
-              <span class="menu-item-name">${p.nom}</span>
-            </div>
-
-            <div class="menu-right">
-              <span class="menu-item-price">${p.prix} DT</span>
-
-              <button class="add-to-cart"
-                data-id="${p.id}"
-                data-nom="${p.nom}"
-                data-prix="${p.prix}">
-                Ajouter
-              </button>
-            </div>
-
-          </div>
-        `;
-      });
-    }
-  }
-
-  loadMenu();
-
-  // PANIER LOCAL
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("add-to-cart")) {
-
-      const id = e.target.dataset.id;
-      const nom = e.target.dataset.nom;
-      const prix = parseFloat(e.target.dataset.prix);
-
-      cart.push({ id, nom, prix });
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      alert(nom + " ajouté au panier !");
-    }
+    if (p.categorie === "cafe") cafeDiv.appendChild(card);
+    if (p.categorie === "boisson") boissonDiv.appendChild(card);
+    if (p.categorie === "chicha") chichaDiv.appendChild(card);
+    if (p.categorie === "autre") autreDiv.appendChild(card);
   });
+}
 
-});
+loadMenu();
