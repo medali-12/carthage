@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Menu — Carthage Café</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+  <h1>ADMIN — GESTION DU MENU</h1>
+</header>
+
+<nav>
+  <a href="admin.html">Retour Admin</a>
+</nav>
+
+<main class="main">
+  <section class="section">
+    <h2>Ajouter un produit</h2>
+
+    <input id="nom" type="text" placeholder="Nom du produit">
+    <input id="prix" type="number" placeholder="Prix">
+    <input id="categorie" type="text" placeholder="Catégorie (cafe, boisson, chicha, autre)">
+
+    <button id="ajouter" class="btn btn-primary">Ajouter</button>
+  </section>
+
+  <section class="section">
+    <h2>Produits existants</h2>
+    <div id="produits"></div>
+  </section>
+</main>
+
+<script type="module" src="admin-menu.js"></script>
+
+</body>
+</html>
