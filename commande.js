@@ -1,27 +1,56 @@
-// Charger le panier depuis localStorage
-function chargerPanier() {
-  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, addDoc, collection, Timestamp } 
+  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  const panierDiv = document.getElementById("panier");
-  const totalDiv = document.getElementById("total");
+import { firebaseConfig } from "./firebase-config.js";
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Charger le panier
+let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+const panierDiv = document.getElementById("panier");
+const totalDiv = document.getElementById("total");
+
+// Afficher le panier avec bouton supprimer
+function afficherPanier() {
   panierDiv.innerHTML = "";
   let total = 0;
 
-  panier.forEach(item => {
+  panier.forEach((item, index) => {
     panierDiv.innerHTML += `
-      <p>${item.nom} — ${item.prix} DT</p>
+      <p>
+        ${item.nom} — ${item.prix} DT
+        <button class="btn-outline btn-supprimer" data-index="${index}">
+          Supprimer
+        </button>
+      </p>
     `;
     total += item.prix;
   });
 
   totalDiv.textContent = total.toFixed(3) + " DT";
+
+  activerSuppression();
 }
+
+// Activer les boutons supprimer
+function activerSuppression() {
+  document.querySelectorAll(".btn-supprimer").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const index = btn.dataset.index;
+      panier.splice(index, 1);
+      localStorage.setItem("panier", JSON.stringify(panier));
+      afficherPanier();
+    });
+  });
+}
+
+afficherPanier();
 
 // Envoyer la commande
 document.getElementById("envoyer").addEventListener("click", async () => {
-  let panier = JSON.parse(localStorage.getItem("panier")) || [];
-
   const nom = document.getElementById("nom").value;
   const table = document.getElementById("table").value;
 
@@ -39,9 +68,14 @@ document.getElementById("envoyer").addEventListener("click", async () => {
   });
 
   alert("Commande envoyée !");
-  localStorage.removeItem("panier");
-  chargerPanier();
-});
 
-// Charger au démarrage
-chargerPanier();
+  // Supprimer le panier immédiatement
+  localStorage.removeItem("panier");
+  panier = [];
+  afficherPanier();
+
+  // Supprimer automatiquement après 5 minutes côté client
+  setTimeout(() => {
+    localStorage.removeItem("panier");
+  }, 5 * 60 * 1000); // 5 minutes
+});
