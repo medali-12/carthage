@@ -29,6 +29,7 @@ async function loadMenu() {
   snapshot.forEach(doc => {
     const p = doc.data();
 
+    // Création de la carte produit
     const card = document.createElement("div");
     card.className = "item-card";
 
@@ -39,6 +40,7 @@ async function loadMenu() {
       <button class="btn btn-primary">Ajouter</button>
     `;
 
+    // Bouton ajouter
     card.querySelector("button").addEventListener("click", () => {
       ajouterAuPanier({
         nom: p.nom,
@@ -46,6 +48,7 @@ async function loadMenu() {
       });
     });
 
+    // Ajouter dans la bonne catégorie
     if (p.categorie === "cafe") cafeDiv.appendChild(card);
     if (p.categorie === "boisson") boissonDiv.appendChild(card);
     if (p.categorie === "chicha") chichaDiv.appendChild(card);
