@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>CARTHAGE Café — Menu</title>
+  <title>Menu — Carthage Café</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,7 +10,7 @@
 
 <header class="header">
   <h1>CARTHAGE CAFÉ</h1>
-  <p>Découvrez notre menu</p>
+  <p>Café • Chicha • Thé — El May, Djerba</p>
 </header>
 
 <nav>
@@ -23,20 +23,19 @@
 
 <main class="main">
   <section class="section">
+    <h2>Menu</h2>
 
-    <h2>Notre Menu</h2>
-
-    <!-- Le menu Firestore s'affiche ici -->
-    <div id="menu" class="menu-grid"></div>
+    <!-- CONTENEUR DU MENU (OBLIGATOIRE POUR LE JS) -->
+    <div id="menu"></div>
 
   </section>
 </main>
 
 <footer>
-  CARTHAGE Café — El May, Djerba
+  CARTHAGE Café — El May, Djerba, Tunisie
 </footer>
 
-<!-- Charger le script qui lit Firestore -->
+<!-- SCRIPT QUI AFFICHE LES CATÉGORIES + IMAGES + PRODUITS -->
 <script type="module" src="menu.js"></script>
 
 </body>
