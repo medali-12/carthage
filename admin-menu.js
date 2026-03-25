@@ -3,13 +3,26 @@ import {
   getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+import { 
+  getStorage, ref, uploadBytes, getDownloadURL 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 const produitsDiv = document.getElementById("produits");
 const btnAjouter = document.getElementById("ajouter");
+const inputImage = document.getElementById("image");
+
+// Fonction upload image
+async function uploadImage(file) {
+  const imageRef = ref(storage, "produits/" + Date.now() + "-" + file.name);
+  await uploadBytes(imageRef, file);
+  return await getDownloadURL(imageRef);
+}
 
 btnAjouter.addEventListener("click", ajouterProduit);
 
@@ -17,16 +30,23 @@ async function ajouterProduit() {
   const nom = document.getElementById("nom").value;
   const prix = document.getElementById("prix").value;
   const categorie = document.getElementById("categorie").value.toLowerCase();
+  const file = inputImage.files[0];
 
   if (!nom || !prix || !categorie) {
     alert("Veuillez remplir tous les champs.");
     return;
   }
 
+  let imageURL = "";
+  if (file) {
+    imageURL = await uploadImage(file);
+  }
+
   await addDoc(collection(db, "produits"), {
     nom,
     prix: parseFloat(prix),
-    categorie
+    categorie,
+    image: imageURL
   });
 
   alert("Produit ajouté !");
@@ -43,6 +63,8 @@ async function chargerProduits() {
 
     produitsDiv.innerHTML += `
       <div class="produit-box">
+        <img src="${p.image || 'images/' + p.categorie + '.jpg'}" class="admin-img">
+
         <h3>${p.nom}</h3>
         <p>Prix : ${p.prix} DT</p>
         <p>Catégorie : ${p.categorie}</p>
