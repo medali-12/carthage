@@ -75,6 +75,27 @@ a:hover {
   margin: 20px 0;
 }
 
+/* --- BOUTON AJOUTER DANS LE MENU --- */
+.add-btn {
+  background: var(--doré);
+  color: var(--noir);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.add-btn:hover {
+  background: transparent;
+  color: var(--doré);
+  border: 1px solid var(--doré);
+  transform: translateY(-2px);
+}
+
 /* HEADER */
 .header {
   background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
@@ -108,7 +129,6 @@ nav {
 
 nav a {
   color: var(--doré);
-  text-decoration: none;
   padding: 0.4rem 1rem;
   border: 1px solid var(--doré);
   border-radius: 20px;
@@ -165,7 +185,7 @@ nav a:hover {
   justify-content: center;
 }
 
-/* Carte produit générée par menu.js */
+/* Carte produit */
 .carte {
   width: 180px;
   background: var(--noir);
@@ -193,15 +213,6 @@ nav a:hover {
 .carte p {
   color: var(--gris);
   margin: 0 0 10px 0;
-}
-
-/* --- BOUTONS D'ACCUEIL --- */
-.home-buttons,
-.btn-row {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px 0;
 }
 
 /* FOOTER */
