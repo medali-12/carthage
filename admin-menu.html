@@ -9,20 +9,30 @@
 <body>
 
 <header class="header">
-  <h1>ADMIN — GESTION DU MENU</h1>
+  <h1>ADMIN — MENU</h1>
+  <p>Gestion des produits</p>
 </header>
 
 <nav>
-  <a href="admin.html">Retour Admin</a>
+  <a href="index.html">Accueil</a>
+  <a href="menu.html">Menu</a>
+  <a href="commande.html">Commander</a>
+  <a href="contact.html">Adresse</a>
+  <a href="admin.html">Admin</a>
+  <a href="#" onclick="logout()">Déconnexion</a>
 </nav>
 
 <main class="main">
+
   <section class="section">
     <h2>Ajouter un produit</h2>
 
-    <input id="nom" type="text" placeholder="Nom du produit">
-    <input id="prix" type="number" placeholder="Prix">
-    <input id="categorie" type="text" placeholder="Catégorie (cafe, boisson, chicha, autre)">
+    <input type="text" id="nom" placeholder="Nom du produit">
+    <input type="number" id="prix" placeholder="Prix">
+    <input type="text" id="categorie" placeholder="Catégorie (cafe, boisson, chicha, autre)">
+
+    <!-- Ajout propre de l'image -->
+    <input type="file" id="image" accept="image/*">
 
     <button id="ajouter" class="btn btn-primary">Ajouter</button>
   </section>
@@ -31,7 +41,12 @@
     <h2>Produits existants</h2>
     <div id="produits"></div>
   </section>
+
 </main>
+
+<footer>
+  CARTHAGE Café — El May, Djerba
+</footer>
 
 <script type="module" src="admin-menu.js"></script>
 
