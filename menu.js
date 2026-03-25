@@ -18,9 +18,31 @@ async function chargerMenu() {
           <img src="${imagePath}" alt="${p.nom}">
           <h3>${p.nom}</h3>
           <p>${p.prix} CHF</p>
+          <button class="add-btn" data-id="${doc.id}" data-nom="${p.nom}" data-prix="${p.prix}">
+            Ajouter
+          </button>
         </div>
       `;
     }
+  });
+
+  activerBoutons();
+}
+
+function activerBoutons() {
+  document.querySelectorAll(".add-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const nom = btn.dataset.nom;
+      const prix = parseFloat(btn.dataset.prix);
+
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+      panier.push({ nom, prix });
+
+      localStorage.setItem("panier", JSON.stringify(panier));
+
+      alert(`${nom} ajouté au panier`);
+    });
   });
 }
 
