@@ -149,20 +149,6 @@ nav a:hover {
   background: #f0c76a;
 }
 
-/* PANIER */
-.cart-summary {
-  background: var(--noir);
-  border: 1px solid var(--bois);
-  padding: 1rem;
-  border-radius: 10px;
-}
-
-.cart-total {
-  color: var(--doré);
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-}
-
 /* FOOTER */
 footer {
   text-align: center;
