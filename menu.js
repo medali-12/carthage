@@ -6,7 +6,6 @@ import { firebaseConfig } from "./firebase-config.js";
 
 window.addEventListener("DOMContentLoaded", () => {
 
-  // Initialiser Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
@@ -17,36 +16,52 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const querySnapshot = await getDocs(collection(db, "produits"));
 
-    menuContainer.innerHTML = ""; // vider
+    // Regrouper par catégorie
+    const categories = {};
 
     querySnapshot.forEach((docSnap) => {
       const p = docSnap.data();
+      const cat = p.categorie || "autre";
 
-      // Structure HTML compatible avec TON style.css
-      menuContainer.innerHTML += `
-        <div class="menu-item">
-
-          <div class="menu-info">
-            <span class="menu-item-name">${p.nom}</span>
-          </div>
-
-          <div class="menu-right">
-            <span class="menu-item-price">${p.prix} DT</span>
-
-            <button class="add-to-cart"
-              data-id="${docSnap.id}"
-              data-nom="${p.nom}"
-              data-prix="${p.prix}">
-              Ajouter
-            </button>
-          </div>
-
-        </div>
-      `;
+      if (!categories[cat]) categories[cat] = [];
+      categories[cat].push({ id: docSnap.id, ...p });
     });
 
-    if (menuContainer.innerHTML.trim() === "") {
-      menuContainer.innerHTML = "<p>Aucun produit pour le moment.</p>";
+    // Affichage
+    menuContainer.innerHTML = "";
+
+    for (const cat in categories) {
+
+      // Titre de catégorie
+      menuContainer.innerHTML += `
+        <h2 style="color: var(--doré); margin-top: 25px;">${cat.toUpperCase()}</h2>
+        <div class="menu-grid" id="cat-${cat}"></div>
+      `;
+
+      const catDiv = document.getElementById(`cat-${cat}`);
+
+      categories[cat].forEach((p) => {
+        catDiv.innerHTML += `
+          <div class="menu-item">
+
+            <div class="menu-info">
+              <span class="menu-item-name">${p.nom}</span>
+            </div>
+
+            <div class="menu-right">
+              <span class="menu-item-price">${p.prix} DT</span>
+
+              <button class="add-to-cart"
+                data-id="${p.id}"
+                data-nom="${p.nom}"
+                data-prix="${p.prix}">
+                Ajouter
+              </button>
+            </div>
+
+          </div>
+        `;
+      });
     }
   }
 
@@ -55,7 +70,6 @@ window.addEventListener("DOMContentLoaded", () => {
   // PANIER LOCAL
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // AJOUTER AU PANIER (compatible téléphone)
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("add-to-cart")) {
 
