@@ -222,4 +222,20 @@ footer {
   color: var(--gris);
   margin-top: 2rem;
   border-top: 2px solid var(--bois-foncé);
+}.btn-supprimer {
+  background: transparent;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.2s;
 }
+
+.btn-supprimer:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
