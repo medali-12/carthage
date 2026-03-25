@@ -1,3 +1,4 @@
+/* PALETTE */
 :root {
   --noir: #0d0d0d;
   --noir-clair: #1a1a1a;
@@ -8,6 +9,7 @@
   --gris: #cfcac2;
 }
 
+/* GLOBAL */
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
@@ -29,11 +31,6 @@ body {
   color: var(--doré);
   letter-spacing: 3px;
   text-transform: uppercase;
-}
-
-.header p {
-  margin-top: 0.3rem;
-  color: var(--gris);
 }
 
 /* NAVIGATION */
@@ -76,16 +73,71 @@ nav a:hover {
   margin-bottom: 1rem;
 }
 
+/* TITRE DE CATÉGORIE AVEC ICÔNE */
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.category-title h2 {
+  margin: 0;
+  color: var(--doré);
+}
+
+.category-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* --- MENU AVEC IMAGES (COMPATIBLE AVEC menu.js) --- */
+
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.item-card {
+  width: 200px;
+  background: var(--noir);
+  border: 1px solid var(--bois-foncé);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+.item-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover; /* Empêche les images géantes */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.item-card h3 {
+  color: var(--doré);
+  margin: 8px 0 4px 0;
+}
+
+.item-card p {
+  color: var(--gris);
+  margin: 0 0 10px 0;
+}
+
 /* BOUTONS */
 .btn {
   padding: 0.6rem 1.2rem;
   border-radius: 25px;
-  text-decoration: none;
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
-  display: inline-block;
-  text-align: center;
+  border: none;
 }
 
 .btn-primary {
@@ -95,105 +147,6 @@ nav a:hover {
 
 .btn-primary:hover {
   background: #f0c76a;
-}
-
-.btn-outline {
-  border: 1px solid var(--doré);
-  color: var(--doré);
-  background: transparent;
-}
-
-.btn-outline:hover {
-  background: var(--doré);
-  color: var(--noir);
-}
-
-/* ALIGNEMENT DES BOUTONS SUR LA PAGE D'ACCUEIL */
-.btn-row {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 300px;
-  margin: 20px auto;
-}
-
-/* --- MENU ALIGNÉ --- */
-
-.menu-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--noir);
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
-  border: 1px solid var(--bois-foncé);
-}
-
-.menu-info {
-  flex: 1;
-}
-
-.menu-item-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--blanc);
-}
-
-.menu-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* ALIGNEMENT PARFAIT DES PRIX */
-.menu-item-price {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: var(--doré);
-  width: 90px;         /* largeur FIXE */
-  text-align: right;   /* aligné à droite */
-  display: inline-block;
-}
-
-/* Bouton Ajouter */
-.add-to-cart {
-  background: var(--doré);
-  color: var(--noir);
-  border: none;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.add-to-cart:hover {
-  background: #f0c76a;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .menu-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .menu-right {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .menu-item-price {
-    text-align: left;
-  }
 }
 
 /* PANIER */
@@ -218,61 +171,3 @@ footer {
   margin-top: 2rem;
   border-top: 2px solid var(--bois-foncé);
 }
-/* TITRE DE CATÉGORIE AVEC IMAGE */
-.category-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 25px;
-  margin-bottom: 10px;
-}
-
-.category-title h2 {
-  color: var(--doré);
-  margin: 0;
-}
-
-.category-icon {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-/* --- CORRECTION POUR LE MENU AVEC IMAGES --- */
-
-.menu-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.item-card {
-  width: 200px;
-  background: var(--noir-clair);
-  border: 1px solid var(--bois-foncé);
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(0,0,0,0.4);
-}
-
-.item-img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover; /* Empêche l’image d’être énorme */
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.item-card h3 {
-  color: var(--doré);
-  margin: 8px 0 4px 0;
-}
-
-.item-card p {
-  color: var(--gris);
-  margin: 0 0 10px 0;
-}
-
-
