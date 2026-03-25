@@ -1,20 +1,10 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, addDoc, collection, Timestamp } 
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+// Charger le panier depuis localStorage
+function chargerPanier() {
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
 
-import { firebaseConfig } from "./firebase-config.js";
+  const panierDiv = document.getElementById("panier");
+  const totalDiv = document.getElementById("total");
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// Charger le panier
-let panier = JSON.parse(localStorage.getItem("panier")) || [];
-
-const panierDiv = document.getElementById("panier");
-const totalDiv = document.getElementById("total");
-
-// Afficher le panier
-function afficherPanier() {
   panierDiv.innerHTML = "";
   let total = 0;
 
@@ -25,13 +15,13 @@ function afficherPanier() {
     total += item.prix;
   });
 
-  totalDiv.textContent = total + " DT";
+  totalDiv.textContent = total.toFixed(3) + " DT";
 }
-
-afficherPanier();
 
 // Envoyer la commande
 document.getElementById("envoyer").addEventListener("click", async () => {
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
   const nom = document.getElementById("nom").value;
   const table = document.getElementById("table").value;
 
@@ -50,5 +40,8 @@ document.getElementById("envoyer").addEventListener("click", async () => {
 
   alert("Commande envoyée !");
   localStorage.removeItem("panier");
-  window.location.reload();
+  chargerPanier();
 });
+
+// Charger au démarrage
+chargerPanier();
