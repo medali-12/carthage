@@ -1,84 +1,23 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin — Carthage Café</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<header class="header">
-  <h1>ADMIN — CARTHAGE CAFÉ</h1>
-  <p>Panneau de gestion</p>
-</header>
-
-<nav>
-  <a href="index.html">Accueil</a>
-  <a href="menu.html">Menu</a>
-  <a href="commande.html">Commander</a>
-  <a href="contact.html">Adresse</a>
-  <a href="admin.html">Admin</a>
-  <a href="#" id="logoutBtn">Déconnexion</a>
-</nav>
-
-<main class="main">
-  <section class="section">
-    <h2>Gestion Admin</h2>
-
-    <div style="display:flex; gap:20px; margin-top:30px; justify-content:center;">
-
-      <a class="btn btn-primary" 
-         href="admin-commandes.html"
-         style="padding:20px; font-size:20px; text-align:center; width:200px;">
-        📦 Commandes
-      </a>
-
-      <a class="btn btn-primary" 
-         href="admin-menu.html"
-         style="padding:20px; font-size:20px; text-align:center; width:200px;">
-        🍽️ Menu
-      </a>
-
-      <a class="btn btn-primary" 
-         href="admin-stock.html"
-         style="padding:20px; font-size:20px; text-align:center; width:200px;">
-        📊 Stock
-      </a>
-
-    </div>
-
-  </section>
-</main>
-
-<footer>
-  CARTHAGE Café — El May, Djerba
-</footer>
-
-<!-- 🔐 Protection de la page admin -->
-<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } 
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { firebaseConfig } from "./firebase-config.js";
 
+// Initialisation Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Vérifie si l'utilisateur est connecté
+// 🔐 Vérification de connexion
 onAuthStateChanged(auth, user => {
   if (!user) {
+    // Pas connecté → redirection vers login
     window.location.href = "admin-login.html";
   }
 });
 
-// Déconnexion
-document.getElementById("logoutBtn").addEventListener("click", () => {
+// 🔐 Déconnexion
+export function logout() {
   signOut(auth).then(() => {
     window.location.href = "admin-login.html";
   });
-});
-</script>
-
-</body>
-</html>
+}
