@@ -1,11 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, addDoc, collection, Timestamp } 
+import { db } from "./firebase-config.js";
+import { addDoc, collection, Timestamp } 
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-import { firebaseConfig } from "./firebase-config.js";
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 // Charger le panier
 let panier = JSON.parse(localStorage.getItem("panier")) || [];
@@ -22,7 +17,7 @@ function afficherPanier() {
     panierDiv.innerHTML += `
       <p>
         ${item.nom} — ${item.prix} DT
-        <button class="btn-outline btn-supprimer" data-index="${index}">
+        <button class="btn-supprimer" data-index="${index}">
           Supprimer
         </button>
       </p>
@@ -69,7 +64,7 @@ document.getElementById("envoyer").addEventListener("click", async () => {
 
   alert("Commande envoyée !");
 
-  // Supprimer le panier immédiatement
+  // Vider le panier immédiatement
   localStorage.removeItem("panier");
   panier = [];
   afficherPanier();
