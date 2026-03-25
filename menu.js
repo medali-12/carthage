@@ -11,6 +11,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const menuContainer = document.getElementById("menu");
 
+  // Images pour chaque catégorie
+  const categoryImages = {
+    cafe: "images/cafe.jpg",
+    boisson: "images/boisson.jpg",
+    chicha: "images/chicha.jpg",
+    autre: "images/autre.jpg"
+  };
+
   async function loadMenu() {
     menuContainer.innerHTML = "<p>Chargement...</p>";
 
@@ -32,9 +40,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     for (const cat in categories) {
 
-      // Titre de catégorie
       menuContainer.innerHTML += `
-        <h2 style="color: var(--doré); margin-top: 25px;">${cat.toUpperCase()}</h2>
+        <div class="category-title">
+          <img src="${categoryImages[cat] || categoryImages.autre}" class="category-icon">
+          <h2>${cat.toUpperCase()}</h2>
+        </div>
+
         <div class="menu-grid" id="cat-${cat}"></div>
       `;
 
