@@ -2,8 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CARTHAGE Café — Commande</title>
+  <title>Commander — Carthage Café</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,7 +10,7 @@
 
 <header class="header">
   <h1>CARTHAGE CAFÉ</h1>
-  <p>Votre commande</p>
+  <p>Café • Chicha • Thé — El May, Djerba</p>
 </header>
 
 <nav>
@@ -24,19 +23,20 @@
 
 <main class="main">
   <section class="section">
+    <h2>Passer une commande</h2>
 
-    <h2>Votre panier</h2>
+    <label>Nom du client</label>
+    <input id="nom" type="text" placeholder="Votre nom">
 
-    <div class="cart-items"></div>
+    <label>Numéro de table</label>
+    <input id="table" type="number" placeholder="Table">
 
-    <div class="cart-total">
-      Total : <span class="cart-total-value">0.000 DT</span>
-    </div>
+    <h3>Votre panier</h3>
+    <div id="panier"></div>
 
-    <div class="btn-row" style="margin-top:1rem">
-      <button class="btn btn-primary" id="valider">Valider la commande</button>
-    </div>
+    <p>Total : <span id="total">0</span> DT</p>
 
+    <button id="valider" class="btn btn-primary">Valider la commande</button>
   </section>
 </main>
 
@@ -44,7 +44,6 @@
   CARTHAGE Café — El May, Djerba
 </footer>
 
-<script src="commande.js"></script>
-
+<script type="module" src="commande.js"></script>
 </body>
 </html>
