@@ -12,6 +12,4 @@ export const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
-// 🔥 C’EST CETTE LIGNE QUI MANQUE CHEZ TOI
 export const db = getFirestore(app);
