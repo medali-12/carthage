@@ -95,40 +95,39 @@ a:hover {
   border: 1px solid var(--doré);
   transform: translateY(-2px);
 }
-.header {
-  position: relative;
-}
-
-.header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("images/logo.png") center/200px no-repeat;
-  opacity: 0.22; /* parfait pour ton thème */
-  pointer-events: none;
-  z-index: 0;
-}
 /* HEADER */
 .header {
-  position: relative;
-  z-index: 1;
   background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
   padding: 1.5rem 1rem;
-  text-align: center;
   border-bottom: 3px solid var(--doré);
 }
 
-.header h1 {
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.logo {
+  width: 90px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
+}
+
+.header-text h1 {
   margin: 0;
   font-size: 1.8rem;
   color: var(--doré);
   letter-spacing: 3px;
   text-transform: uppercase;
+  text-align: left;
 }
 
-.header p {
-  margin-top: 5px;
+.header-text p {
+  margin: 5px 0 0;
   color: var(--gris);
+  text-align: left;
 }
 
 /* NAVIGATION */
