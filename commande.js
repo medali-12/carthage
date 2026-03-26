@@ -50,7 +50,7 @@ document.getElementById("envoyer").addEventListener("click", async () => {
   const table = document.getElementById("table").value;
 
   if (!nom || !table || panier.length === 0) {
-    alert("Veuillez remplir tous les champs et ajouter des produits.");
+    showNotif("⚠️ Remplis les champs et ajoute des produits !");
     return;
   }
 
@@ -62,7 +62,8 @@ document.getElementById("envoyer").addEventListener("click", async () => {
     date: Timestamp.now()
   });
 
-  alert("Commande envoyée !");
+  // Message stylé 3ejaja
+  showNotif("✔ Commande envoyée, 3ejaja !");
 
   // Vider le panier immédiatement
   localStorage.removeItem("panier");
@@ -74,3 +75,21 @@ document.getElementById("envoyer").addEventListener("click", async () => {
     localStorage.removeItem("panier");
   }, 5 * 60 * 1000); // 5 minutes
 });
+
+// 🔥 Fonction notification stylée
+function showNotif(message) {
+  const notif = document.getElementById("notif");
+  const text = document.getElementById("notif-text");
+
+  text.textContent = message;
+  notif.classList.remove("hidden");
+
+  setTimeout(() => {
+    notif.classList.add("show");
+  }, 10);
+
+  setTimeout(() => {
+    notif.classList.remove("show");
+    setTimeout(() => notif.classList.add("hidden"), 400);
+  }, 2500);
+}
