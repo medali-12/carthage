@@ -322,6 +322,31 @@ textarea:focus {
   border-color: var(--doré);
   box-shadow: 0 0 8px rgba(212,164,74,0.4);
 }
+/* --- CHAMPS INPUT (NOM + TABLE) --- */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: var(--noir);
+  color: var(--blanc);
+  border: 1px solid var(--bois-foncé);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.25s;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: var(--gris);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: var(--doré);
+  box-shadow: 0 0 8px rgba(212,164,74,0.4);
+}
 
 
 .hidden {
