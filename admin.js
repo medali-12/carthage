@@ -1,6 +1,7 @@
 import { db } from "./firebase-config.js";
 import { 
-  getAuth, onAuthStateChanged, signOut, setPersistence, browserSessionPersistence 
+  getAuth, onAuthStateChanged, signOut, 
+  setPersistence, browserSessionPersistence 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 // Firebase est déjà initialisé dans firebase-config.js
@@ -12,14 +13,14 @@ setPersistence(auth, browserSessionPersistence);
 // 🔐 Vérification si l'utilisateur est connecté
 onAuthStateChanged(auth, user => {
   if (!user) {
-    window.location.href = "index.html"; // retour à l’accueil
+    window.location.href = "admin-login.html"; // retour vers login
   }
 });
 
 // 🔐 Déconnexion manuelle
 document.getElementById("logoutBtn").addEventListener("click", () => {
   signOut(auth).then(() => {
-    window.location.href = "index.html"; // retour à l’accueil
+    window.location.href = "admin-login.html"; // retour vers login
   });
 });
 
@@ -31,7 +32,7 @@ function resetTimer() {
   timer = setTimeout(() => {
     signOut(auth).then(() => {
       alert("Déconnecté pour inactivité");
-      window.location.href = "index.html"; // retour à l’accueil
+      window.location.href = "admin-login.html"; // retour vers login
     });
   }, 180000); // 3 minutes
 }
