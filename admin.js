@@ -1,13 +1,10 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { db } from "./firebase-config.js";
 import { 
   getAuth, onAuthStateChanged, signOut, setPersistence, browserSessionPersistence 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import { firebaseConfig } from "./firebase-config.js";
-
-// Initialisation Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Firebase est déjà initialisé dans firebase-config.js
+const auth = getAuth();
 
 // 🔐 Déconnexion au refresh
 setPersistence(auth, browserSessionPersistence);
