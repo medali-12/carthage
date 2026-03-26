@@ -1,29 +1,32 @@
 import { db } from "./firebase-config.js";
 import { 
   getAuth, onAuthStateChanged, signOut, 
-  setPersistence, browserSessionPersistence 
+  setPersistence, inMemoryPersistence 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const auth = getAuth();
 
-// 🔐 IMPORTANT : définir la persistance AVANT toute autre action
-setPersistence(auth, browserSessionPersistence).then(() => {
+// 🔐 Session uniquement en mémoire → perdue au refresh
+setPersistence(auth, inMemoryPersistence).then(() => {
 
-  // 🔐 Vérification si l'utilisateur est connecté
+  // Vérification si l'utilisateur est connecté
   onAuthStateChanged(auth, user => {
     if (!user) {
-      window.location.href = "admin-login.html"; // retour vers login
+      window.location.href = "admin-login.html"; // page de login
     }
   });
 
-  // 🔐 Déconnexion manuelle
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    signOut(auth).then(() => {
-      window.location.href = "admin-login.html";
+  // Déconnexion manuelle
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "admin-login.html";
+      });
     });
-  });
+  }
 
-  // 🔥 Déconnexion automatique après 3 minutes d'inactivité
+  // Déconnexion automatique après 3 minutes d'inactivité
   let timer;
 
   function resetTimer() {
@@ -36,7 +39,6 @@ setPersistence(auth, browserSessionPersistence).then(() => {
     }, 180000); // 3 minutes
   }
 
-  // Événements qui réinitialisent le timer
   window.onload = resetTimer;
   document.onmousemove = resetTimer;
   document.onkeydown = resetTimer;
