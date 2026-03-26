@@ -6,6 +6,9 @@ import {
 
 const auth = getAuth();
 
+// 🟥 FORCER la perte de session au refresh
+sessionStorage.clear();
+
 // 🔐 Session uniquement en mémoire → perdue au refresh
 setPersistence(auth, inMemoryPersistence).then(() => {
 
