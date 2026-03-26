@@ -297,6 +297,31 @@ footer {
   opacity: 1;
   transform: translateX(-50%) translateY(0) scale(1);
 }
+/* --- CHAMP MESSAGE (PETIT MESSAGE) --- */
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: var(--noir);
+  color: var(--blanc);
+  border: 1px solid var(--bois-foncé);
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: none;
+  height: 90px;
+  outline: none;
+  transition: 0.25s;
+}
+
+textarea::placeholder {
+  color: var(--gris);
+}
+
+textarea:focus {
+  border-color: var(--doré);
+  box-shadow: 0 0 8px rgba(212,164,74,0.4);
+}
+
 
 .hidden {
   display: none;
