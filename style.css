@@ -222,28 +222,56 @@ footer {
   color: var(--gris);
   margin-top: 2rem;
   border-top: 2px solid var(--bois-foncé);
-}.btn-supprimer {
+}
+
+/* --- STYLE PREMIUM POUR LES COMMANDES --- */
+
+.commande-box {
+  background: var(--noir-clair);
+  color: var(--blanc);
+  border: 1px solid var(--bois-foncé);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.commande-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+  color: var(--doré);
+}
+
+.commande-box p {
+  margin: 5px 0;
+  color: var(--gris);
+}
+
+.commande-box ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.commande-box li {
+  margin: 4px 0;
+  color: var(--blanc);
+}
+
+/* Bouton supprimer */
+.btn-supprimer {
   background: transparent;
   color: #ff4d4d;
   border: 1px solid #ff4d4d;
-  padding: 4px 10px;
-  border-radius: 15px;
-  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
   cursor: pointer;
-  margin-left: 10px;
-  transition: 0.2s;
+  transition: 0.25s;
+  margin-top: 12px;
 }
 
 .btn-supprimer:hover {
   background: #ff4d4d;
   color: white;
-}
-
-.commande-box {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 20px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
 }
