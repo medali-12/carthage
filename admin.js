@@ -6,24 +6,24 @@ import {
 // Firebase est déjà initialisé dans firebase-config.js
 const auth = getAuth();
 
-// 🔐 Déconnexion au refresh
+// 🔐 Déconnexion au refresh (session uniquement dans l’onglet)
 setPersistence(auth, browserSessionPersistence);
 
 // 🔐 Vérification si l'utilisateur est connecté
 onAuthStateChanged(auth, user => {
   if (!user) {
-    window.location.href = "admin-login.html";
+    window.location.href = "index.html"; // retour à l’accueil
   }
 });
 
 // 🔐 Déconnexion manuelle
 document.getElementById("logoutBtn").addEventListener("click", () => {
   signOut(auth).then(() => {
-    window.location.href = "admin-login.html";
+    window.location.href = "index.html"; // retour à l’accueil
   });
 });
 
-// 🔥 Déconnexion automatique après 5 minutes d'inactivité
+// 🔥 Déconnexion automatique après 3 minutes d'inactivité
 let timer;
 
 function resetTimer() {
@@ -31,9 +31,9 @@ function resetTimer() {
   timer = setTimeout(() => {
     signOut(auth).then(() => {
       alert("Déconnecté pour inactivité");
-      window.location.href = "admin-login.html";
+      window.location.href = "index.html"; // retour à l’accueil
     });
-  }, 300000); // 5 minutes
+  }, 180000); // 3 minutes
 }
 
 // Événements qui réinitialisent le timer
