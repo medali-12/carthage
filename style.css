@@ -100,8 +100,9 @@ a:hover {
 /*                HEADER                  */
 /* -------------------------------------- */
 
+/* HEADER STYLE PREMIUM (comme ton image) */
 .header {
-  background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
+  background: linear-gradient(90deg, #2b1a12, #4a2e1f, #6b4633);
   padding: 1.2rem 1rem;
   border-bottom: 3px solid var(--doré);
 
@@ -118,15 +119,15 @@ a:hover {
 }
 
 .logo {
-  width: 75px;
-  height: 75px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.5));
 }
 
 .header-text h1 {
   margin: 0;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   color: var(--doré);
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -135,7 +136,7 @@ a:hover {
 .header-text p {
   margin: 4px 0 0;
   color: var(--gris);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 /* -------------------------------------- */
