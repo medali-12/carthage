@@ -7,7 +7,8 @@ import {
   getStorage, ref, uploadBytes, getDownloadURL 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-import { firebaseConfig } from "./firebase-config.js";
+// 🔥 IMPORT AUTOMATIQUE DU CONFIG (compatible avec toutes les versions)
+import firebaseConfig from "./firebase-config.js";
 
 // Initialisation Firebase
 const app = initializeApp(firebaseConfig);
