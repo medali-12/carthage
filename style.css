@@ -274,7 +274,8 @@ footer {
   background: #ff4d4d;
   color: white;
   transform: translateY(-2px);
-}//* NOTIFICATION STYLE 3EJAJA — TOP CENTER */
+}
+/* --- NOTIFICATION STYLE 3EJAJA — TOP CENTER */
 .notif {
   position: fixed;
   top: 20px;
