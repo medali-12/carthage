@@ -100,13 +100,13 @@ a:hover {
 }
 
 .header::before {
-  z-index: 0;
   content: "";
   position: absolute;
   inset: 0;
   background: url("images/logo.png") center/200px no-repeat;
-  opacity: 0.08;
+  opacity: 0.22; /* parfait pour ton thème */
   pointer-events: none;
+  z-index: 0;
 }
 /* HEADER */
 .header {
