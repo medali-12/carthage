@@ -95,9 +95,23 @@ a:hover {
   border: 1px solid var(--doré);
   transform: translateY(-2px);
 }
+.header {
+  position: relative;
+}
 
+.header::before {
+  z-index: 0;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/logo.png") center/200px no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+}
 /* HEADER */
 .header {
+  position: relative;
+  z-index: 1;
   background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
   padding: 1.5rem 1rem;
   text-align: center;
