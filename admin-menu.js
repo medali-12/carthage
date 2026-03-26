@@ -9,21 +9,24 @@ import {
 
 import { firebaseConfig } from "./firebase-config.js";
 
+// Initialisation Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+// Sélecteurs HTML
 const produitsDiv = document.getElementById("produits");
 const btnAjouter = document.getElementById("ajouter");
 const inputImage = document.getElementById("image");
 
-// Fonction upload image
+// 🔥 Upload image vers Firebase Storage
 async function uploadImage(file) {
   const imageRef = ref(storage, "produits/" + Date.now() + "-" + file.name);
   await uploadBytes(imageRef, file);
   return await getDownloadURL(imageRef);
 }
 
+// 🔥 Ajouter un produit
 btnAjouter.addEventListener("click", ajouterProduit);
 
 async function ajouterProduit() {
@@ -46,13 +49,14 @@ async function ajouterProduit() {
     nom,
     prix: parseFloat(prix),
     categorie,
-    image: imageURL
+    imageURL: imageURL
   });
 
   alert("Produit ajouté !");
   chargerProduits();
 }
 
+// 🔥 Charger les produits existants
 async function chargerProduits() {
   produitsDiv.innerHTML = "";
 
@@ -63,7 +67,7 @@ async function chargerProduits() {
 
     produitsDiv.innerHTML += `
       <div class="produit-box">
-        <img src="${p.image || 'images/' + p.categorie + '.jpg'}" class="admin-img">
+        <img src="${p.imageURL || 'images/default.jpg'}" class="admin-img">
 
         <h3>${p.nom}</h3>
         <p>Prix : ${p.prix} DT</p>
@@ -76,12 +80,14 @@ async function chargerProduits() {
   });
 }
 
+// 🔥 Supprimer un produit
 window.supprimerProduit = async function(id) {
   await deleteDoc(doc(db, "produits", id));
   alert("Produit supprimé !");
   chargerProduits();
 };
 
+// 🔥 Modifier un produit
 window.modifierProduit = async function(id, nom, prix, categorie) {
   const nouveauNom = prompt("Nouveau nom :", nom);
   const nouveauPrix = prompt("Nouveau prix :", prix);
@@ -97,4 +103,5 @@ window.modifierProduit = async function(id, nom, prix, categorie) {
   chargerProduits();
 };
 
+// Charger au démarrage
 chargerProduits();
