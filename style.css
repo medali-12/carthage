@@ -100,34 +100,29 @@ a:hover {
   background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
   padding: 1.5rem 1rem;
   border-bottom: 3px solid var(--doré);
-}
 
-.header-content {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  position: relative;
 }
 
-.logo {
-  width: 90px;
-  border-radius: 50%;
+/* Logo ajouté via CSS */
+.header::before {
+  content: "";
+  background: url("images/logo.png") center/85px no-repeat;
+  width: 85px;
+  height: 85px;
+  flex-shrink: 0;
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
 }
 
-.header-text h1 {
+/* Texte */
+.header h1,
+.header p {
+  text-align: left;
   margin: 0;
-  font-size: 1.8rem;
-  color: var(--doré);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-align: left;
-}
-
-.header-text p {
-  margin: 5px 0 0;
-  color: var(--gris);
-  text-align: left;
 }
 
 /* NAVIGATION */
