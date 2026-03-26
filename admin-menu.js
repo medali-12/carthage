@@ -7,10 +7,13 @@ import {
   getStorage, ref, uploadBytes, getDownloadURL 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
+import { getAuth, onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 // 🔥 Importation de TON db existant
 import { db } from "./firebase-config.js";
 
-// 🔥 MAIS tu dois réinitialiser Firebase pour Storage
+// 🔥 Réinitialisation Firebase pour Storage
 const firebaseConfig = {
   apiKey: "AIzaSyCzmBq6kM8ufzwzxSO6P-fB8AXxXfBaCQ8",
   authDomain: "carthage-cafe.firebaseapp.com",
@@ -23,6 +26,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
+
+// 🔐 Authentification admin
+const auth = getAuth();
+
+onAuthStateChanged(auth, user => {
+  if (!user) {
+    window.location.href = "admin-login.html";
+    return;
+  }
+
+  console.log("Admin connecté :", user.email);
+  chargerProduits();
+});
 
 // Sélecteurs HTML
 const produitsDiv = document.getElementById("produits");
@@ -112,6 +128,3 @@ window.modifierProduit = async function(id, nom, prix, categorie) {
   alert("Produit modifié !");
   chargerProduits();
 };
-
-// Charger au démarrage
-chargerProduits();
