@@ -95,43 +95,53 @@ a:hover {
   border: 1px solid var(--doré);
   transform: translateY(-2px);
 }
-/* HEADER */
+
+/* -------------------------------------- */
+/*                HEADER                  */
+/* -------------------------------------- */
+
 .header {
   background: linear-gradient(180deg, var(--bois-foncé), var(--bois));
-  padding: 1.5rem 1rem;
+  padding: 1.2rem 1rem;
   border-bottom: 3px solid var(--doré);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  gap: 15px;
 }
 
 .logo {
-  width: 90px;
-  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
   filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
 }
 
 .header-text h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   color: var(--doré);
   letter-spacing: 3px;
   text-transform: uppercase;
-  text-align: left;
 }
 
 .header-text p {
-  margin: 5px 0 0;
+  margin: 4px 0 0;
   color: var(--gris);
-  text-align: left;
+  font-size: 0.9rem;
 }
 
+/* -------------------------------------- */
+/*              NAVIGATION                */
+/* -------------------------------------- */
 
-/* NAVIGATION */
 nav {
   background: var(--noir-clair);
   display: flex;
@@ -154,7 +164,10 @@ nav a:hover {
   color: var(--noir);
 }
 
-/* SECTIONS */
+/* -------------------------------------- */
+/*                SECTIONS                */
+/* -------------------------------------- */
+
 .section {
   background: var(--noir-clair);
   margin: 1.5rem auto;
@@ -190,7 +203,9 @@ nav a:hover {
   border-radius: 6px;
 }
 
-/* --- MENU AVEC IMAGES (COMPATIBLE AVEC menu.js) --- */
+/* -------------------------------------- */
+/*                MENU                    */
+/* -------------------------------------- */
 
 .menu-grid {
   display: flex;
@@ -199,7 +214,6 @@ nav a:hover {
   justify-content: center;
 }
 
-/* Carte produit */
 .carte {
   width: 180px;
   background: var(--noir);
@@ -210,7 +224,6 @@ nav a:hover {
   box-shadow: 0 0 8px rgba(0,0,0,0.4);
 }
 
-/* Image du produit */
 .carte img {
   width: 100%;
   height: 140px;
@@ -229,7 +242,10 @@ nav a:hover {
   margin: 0 0 10px 0;
 }
 
-/* FOOTER */
+/* -------------------------------------- */
+/*                FOOTER                  */
+/* -------------------------------------- */
+
 footer {
   text-align: center;
   padding: 1.5rem;
@@ -238,7 +254,9 @@ footer {
   border-top: 2px solid var(--bois-foncé);
 }
 
-/* --- STYLE PREMIUM POUR LES COMMANDES --- */
+/* -------------------------------------- */
+/*              COMMANDES                 */
+/* -------------------------------------- */
 
 .commande-box {
   background: var(--noir-clair);
@@ -289,7 +307,11 @@ footer {
   color: white;
   transform: translateY(-2px);
 }
-/* --- NOTIFICATION STYLE 3EJAJA — TOP CENTER */
+
+/* -------------------------------------- */
+/*             NOTIFICATION               */
+/* -------------------------------------- */
+
 .notif {
   position: fixed;
   top: 20px;
@@ -312,7 +334,11 @@ footer {
   opacity: 1;
   transform: translateX(-50%) translateY(0) scale(1);
 }
-/* --- CHAMP MESSAGE (PETIT MESSAGE) --- */
+
+/* -------------------------------------- */
+/*              INPUTS                    */
+/* -------------------------------------- */
+
 textarea {
   width: 100%;
   padding: 12px;
@@ -336,7 +362,7 @@ textarea:focus {
   border-color: var(--doré);
   box-shadow: 0 0 8px rgba(212,164,74,0.4);
 }
-/* --- CHAMPS INPUT (NOM + TABLE) --- */
+
 input[type="text"],
 input[type="number"] {
   width: 100%;
@@ -362,59 +388,34 @@ input[type="number"]:focus {
   box-shadow: 0 0 8px rgba(212,164,74,0.4);
 }
 
-
-.hidden {
-  display: none;
-}
 .hidden {
   display: none;
 }
 
-/* --- RESPONSIVE MOBILE --- */
+/* -------------------------------------- */
+/*              RESPONSIVE                */
+/* -------------------------------------- */
+
 @media (max-width: 600px) {
 
-  /* Sections plus petites */
-  .section {
+  .header {
+    flex-direction: column;
     padding: 1rem;
-    margin: 1rem;
   }
 
-  /* Inputs + textarea */
-  input[type="text"],
-  input[type="number"],
-  textarea {
-    font-size: 0.95rem;
-    padding: 10px;
+  .logo {
+    width: 65px;
+    height: 65px;
   }
 
-  /* Bouton envoyer */
-  .btn-primary {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
+  .header-text h1 {
+    font-size: 1.4rem;
+    text-align: center;
   }
 
-  /* Menu : cartes plus petites */
-  .menu-grid {
-    gap: 15px;
+  .header-text p {
+    text-align: center;
   }
-
-  .carte {
-    width: 150px;
-  }
-
-  .carte img {
-    height: 120px;
-  }
-
-  /* Notification plus petite */
-  .notif {
-    font-size: 0.95rem;
-    padding: 12px 18px;
-  }
-}
-/* --- NAVIGATION MOBILE FIX --- */
-@media (max-width: 600px) {
 
   nav {
     flex-wrap: wrap;
@@ -428,9 +429,11 @@ input[type="number"]:focus {
     padding: 10px;
     font-size: 0.9rem;
   }
-}
-/* --- MENU 2 COLONNES MOBILE --- */
-@media (max-width: 600px) {
+
+  .section {
+    padding: 1rem;
+    margin: 1rem;
+  }
 
   .menu-grid {
     display: grid;
@@ -445,5 +448,9 @@ input[type="number"]:focus {
   .carte img {
     height: 120px;
   }
-}
 
+  .notif {
+    font-size: 0.95rem;
+    padding: 12px 18px;
+  }
+}
