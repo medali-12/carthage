@@ -1,12 +1,16 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } 
-  from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { db } from "./firebase-config.js";
+import { 
+  getAuth, signInWithEmailAndPassword, 
+  setPersistence, browserSessionPersistence 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-import { firebaseConfig } from "./firebase-config.js";
+// Firebase est déjà initialisé dans firebase-config.js
+const auth = getAuth();
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// Session expire au refresh
+setPersistence(auth, browserSessionPersistence);
 
+// Connexion admin
 document.getElementById("loginBtn").addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const pass = document.getElementById("password").value;
@@ -16,6 +20,7 @@ document.getElementById("loginBtn").addEventListener("click", () => {
       window.location.href = "admin.html";
     })
     .catch(() => {
-      document.getElementById("error").textContent = "Email ou mot de passe incorrect.";
+      document.getElementById("error").textContent = 
+        "Email ou mot de passe incorrect.";
     });
 });
