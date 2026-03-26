@@ -274,4 +274,31 @@ footer {
   background: #ff4d4d;
   color: white;
   transform: translateY(-2px);
+}/* NOTIFICATION STYLE 3EJAJA */
+.notif {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--noir-clair);
+  color: var(--doré);
+  border: 2px solid var(--doré);
+  padding: 15px 22px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.6);
+  font-size: 1.1rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: 0.35s ease;
+  z-index: 9999;
 }
+
+.notif.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hidden {
+  display: none;
+}
+
