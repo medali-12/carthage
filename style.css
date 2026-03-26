@@ -352,3 +352,50 @@ input[type="number"]:focus {
 .hidden {
   display: none;
 }
+.hidden {
+  display: none;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 600px) {
+
+  /* Sections plus petites */
+  .section {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  /* Inputs + textarea */
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  /* Bouton envoyer */
+  .btn-primary {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* Menu : cartes plus petites */
+  .menu-grid {
+    gap: 15px;
+  }
+
+  .carte {
+    width: 150px;
+  }
+
+  .carte img {
+    height: 120px;
+  }
+
+  /* Notification plus petite */
+  .notif {
+    font-size: 0.95rem;
+    padding: 12px 18px;
+  }
+}
