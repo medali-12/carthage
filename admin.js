@@ -1,23 +1,31 @@
 import { db } from "./firebase-config.js";
 import { 
   getAuth, onAuthStateChanged, signOut, 
-  setPersistence, inMemoryPersistence 
+  setPersistence, browserSessionPersistence 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const auth = getAuth();
 
-// 🔐 Session uniquement en mémoire → perdue au refresh
-setPersistence(auth, inMemoryPersistence).then(() => {
+// 🔥 Détecter un refresh
+if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+  sessionStorage.setItem("forceLogout", "1");
+}
 
-  // 🟩 Attendre que Firebase charge l'état de connexion
+// 🔐 Persistance normale (garde la session entre pages)
+setPersistence(auth, browserSessionPersistence).then(() => {
+
   onAuthStateChanged(auth, user => {
+
+    // 🔥 Si refresh → déconnexion
+    if (sessionStorage.getItem("forceLogout") === "1") {
+      sessionStorage.removeItem("forceLogout");
+      signOut(auth);
+      return;
+    }
+
+    // 🔐 Si pas connecté → login
     if (!user) {
-      // On attend un peu pour laisser Firebase charger
-      setTimeout(() => {
-        if (!auth.currentUser) {
-          window.location.href = "admin-login.html";
-        }
-      }, 300);
+      window.location.href = "admin-login.html";
     }
   });
 
@@ -31,9 +39,8 @@ setPersistence(auth, inMemoryPersistence).then(() => {
     });
   }
 
-  // 🔥 Déconnexion automatique après 3 minutes d'inactivité
+  // 🔥 Déconnexion automatique après 3 minutes
   let timer;
-
   function resetTimer() {
     clearTimeout(timer);
     timer = setTimeout(() => {
@@ -41,7 +48,7 @@ setPersistence(auth, inMemoryPersistence).then(() => {
         alert("Déconnecté pour inactivité");
         window.location.href = "admin-login.html";
       });
-    }, 180000); // 3 minutes
+    }, 180000);
   }
 
   window.onload = resetTimer;
