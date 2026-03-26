@@ -1,11 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, getDocs, collection } 
+import { db } from "./firebase-config.js";
+import { getDocs, collection } 
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-import { firebaseConfig } from "./firebase-config.js";
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 async function chargerCommandes() {
   const container = document.getElementById("commandes");
