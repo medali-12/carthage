@@ -63,7 +63,7 @@ document.getElementById("envoyer").addEventListener("click", async () => {
   });
 
   // Message stylé 3ejaja
-  showNotif("✔ Commande envoyée, 3ejaja !");
+  showNotif("ok chef, 3ejaja o tekon ba7dhak !");
 
   // Vider le panier immédiatement
   localStorage.removeItem("panier");
