@@ -6,20 +6,20 @@ import {
 
 const auth = getAuth();
 
-// 🟥 FORCER la perte de session au refresh
-sessionStorage.clear();
-
 // 🔐 Session uniquement en mémoire → perdue au refresh
 setPersistence(auth, inMemoryPersistence).then(() => {
 
   // 🟩 Attendre que Firebase charge l'état de connexion
-  setTimeout(() => {
-    onAuthStateChanged(auth, user => {
-      if (!user) {
-        window.location.href = "admin-login.html";
-      }
-    });
-  }, 200); // délai 200ms pour laisser Firebase initialiser
+  onAuthStateChanged(auth, user => {
+    if (!user) {
+      // On attend un peu pour laisser Firebase charger
+      setTimeout(() => {
+        if (!auth.currentUser) {
+          window.location.href = "admin-login.html";
+        }
+      }, 300);
+    }
+  });
 
   // 🔐 Déconnexion manuelle
   const logoutBtn = document.getElementById("logoutBtn");
