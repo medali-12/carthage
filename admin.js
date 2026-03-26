@@ -12,14 +12,16 @@ sessionStorage.clear();
 // 🔐 Session uniquement en mémoire → perdue au refresh
 setPersistence(auth, inMemoryPersistence).then(() => {
 
-  // Vérification si l'utilisateur est connecté
-  onAuthStateChanged(auth, user => {
-    if (!user) {
-      window.location.href = "admin-login.html"; // page de login
-    }
-  });
+  // 🟩 Attendre que Firebase charge l'état de connexion
+  setTimeout(() => {
+    onAuthStateChanged(auth, user => {
+      if (!user) {
+        window.location.href = "admin-login.html";
+      }
+    });
+  }, 200); // délai 200ms pour laisser Firebase initialiser
 
-  // Déconnexion manuelle
+  // 🔐 Déconnexion manuelle
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
@@ -29,7 +31,7 @@ setPersistence(auth, inMemoryPersistence).then(() => {
     });
   }
 
-  // Déconnexion automatique après 3 minutes d'inactivité
+  // 🔥 Déconnexion automatique après 3 minutes d'inactivité
   let timer;
 
   function resetTimer() {
