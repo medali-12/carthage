@@ -3,7 +3,7 @@ import { addDoc, collection, Timestamp }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Liste des mots interdits
-const bannedWords = ["zebi", "9ahba", "fuck", "miboun", "omk", "ta7an","asba","Asba","Zebi","nique","bachoula","pute","9a7ba","kaboul","fara5","oukhetik"];
+const bannedWords = ["zebi", "9ahba", "fuck", "miboun", "omk", "ta7an","asba","Asba","Zebi","nique","bachoula","pute","9a7ba","kaboul","fara5","omek","nik oumek"];
 
 // Fonction pour vérifier les mots interdits
 function contientMotBanni(texte) {
