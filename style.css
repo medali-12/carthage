@@ -399,3 +399,37 @@ input[type="number"]:focus {
     padding: 12px 18px;
   }
 }
+/* --- NAVIGATION MOBILE FIX --- */
+@media (max-width: 600px) {
+
+  nav {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  nav a {
+    flex: 1 1 45%;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+/* --- MENU 2 COLONNES MOBILE --- */
+@media (max-width: 600px) {
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .carte {
+    width: 100%;
+  }
+
+  .carte img {
+    height: 120px;
+  }
+}
+
