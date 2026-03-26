@@ -61,13 +61,13 @@ document.getElementById("envoyer").addEventListener("click", async () => {
 
   // Vérifier champs vides
   if (!nom || !table || panier.length === 0) {
-    showNotif("okber fi mokhek ya3tik Asba 😄!!");
+    showNotif("Esmik O Esim omek");
     return;
   }
 
   // Vérifier mots interdits
   if (contientMotBanni(nom) || contientMotBanni(note)) {
-    showNotif("❌ Mot interdit ! Merci de rester respectueux.");
+    showNotif("okber fi mokhek ya3tik Asba 😄!!");
     return;
   }
 
