@@ -17,7 +17,7 @@ body {
   color: var(--blanc);
 }
 
-/* LIENS */
+/* --- STYLE GLOBAL POUR TOUS LES LIENS --- */
 a {
   color: var(--doré);
   text-decoration: none;
@@ -29,16 +29,18 @@ a:hover {
   color: #f0c76a;
 }
 
-/* BOUTONS */
+/* --- BOUTONS GÉNÉRIQUES --- */
 .btn {
   display: inline-block;
   padding: 10px 18px;
   border-radius: 25px;
   font-weight: 600;
-  cursor: pointer;
+  text-decoration: none;
   transition: 0.25s;
+  cursor: pointer;
 }
 
+/* Bouton doré (plein) */
 .btn-primary {
   background: var(--doré);
   color: var(--noir);
@@ -48,6 +50,49 @@ a:hover {
 .btn-primary:hover {
   background: transparent;
   color: var(--doré);
+  transform: translateY(-2px);
+}
+
+/* Bouton contour doré */
+.btn-outline {
+  background: transparent;
+  color: var(--doré);
+  border: 1px solid var(--doré);
+}
+
+.btn-outline:hover {
+  background: var(--doré);
+  color: var(--noir);
+  transform: translateY(-2px);
+}
+
+/* Alignement des boutons */
+.btn-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* --- BOUTON AJOUTER DANS LE MENU --- */
+.add-btn {
+  background: var(--doré);
+  color: var(--noir);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.add-btn:hover {
+  background: transparent;
+  color: var(--doré);
+  border: 1px solid var(--doré);
   transform: translateY(-2px);
 }
 
@@ -67,6 +112,11 @@ a:hover {
   text-transform: uppercase;
 }
 
+.header p {
+  margin-top: 5px;
+  color: var(--gris);
+}
+
 /* NAVIGATION */
 nav {
   background: var(--noir-clair);
@@ -82,6 +132,7 @@ nav a {
   padding: 0.4rem 1rem;
   border: 1px solid var(--doré);
   border-radius: 20px;
+  transition: 0.2s;
 }
 
 nav a:hover {
@@ -105,32 +156,108 @@ nav a:hover {
   margin-bottom: 1rem;
 }
 
-/* CHAMP MESSAGE */
-textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  background: var(--noir);
-  color: var(--blanc);
-  border: 1px solid var(--bois-foncé);
-  border-radius: 8px;
-  font-size: 1rem;
-  resize: none;
-  height: 90px;
-  outline: none;
-  transition: 0.25s;
+/* TITRE DE CATÉGORIE AVEC ICÔNE */
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
-textarea::placeholder {
+.category-title h2 {
+  margin: 0;
+  color: var(--doré);
+}
+
+.category-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* --- MENU AVEC IMAGES (COMPATIBLE AVEC menu.js) --- */
+
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Carte produit */
+.carte {
+  width: 180px;
+  background: var(--noir);
+  border: 1px solid var(--bois-foncé);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+/* Image du produit */
+.carte img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.carte h3 {
+  color: var(--doré);
+  margin: 8px 0 4px 0;
+}
+
+.carte p {
+  color: var(--gris);
+  margin: 0 0 10px 0;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--gris);
+  margin-top: 2rem;
+  border-top: 2px solid var(--bois-foncé);
+}
+
+/* --- STYLE PREMIUM POUR LES COMMANDES --- */
+
+.commande-box {
+  background: var(--noir-clair);
+  color: var(--blanc);
+  border: 1px solid var(--bois-foncé);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.commande-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+  color: var(--doré);
+}
+
+.commande-box p {
+  margin: 5px 0;
   color: var(--gris);
 }
 
-textarea:focus {
-  border-color: var(--doré);
-  box-shadow: 0 0 8px rgba(212,164,74,0.4);
+.commande-box ul {
+  margin-top: 10px;
+  padding-left: 20px;
 }
 
-/* BOUTON SUPPRIMER */
+.commande-box li {
+  margin: 4px 0;
+  color: var(--blanc);
+}
+
+/* Bouton supprimer */
 .btn-supprimer {
   background: transparent;
   color: #ff4d4d;
@@ -140,15 +267,14 @@ textarea:focus {
   font-size: 0.85rem;
   cursor: pointer;
   transition: 0.25s;
+  margin-top: 12px;
 }
 
 .btn-supprimer:hover {
   background: #ff4d4d;
   color: white;
   transform: translateY(-2px);
-}
-
-/* NOTIFICATION TOP CENTER */
+}//* NOTIFICATION STYLE 3EJAJA — TOP CENTER */
 .notif {
   position: fixed;
   top: 20px;
