@@ -103,42 +103,42 @@ a:hover {
 /* HEADER STYLE PREMIUM (comme ton image) */
 .header {
   background: linear-gradient(90deg, #3c2417, #6a3f28, #9a6a45);
-  padding: 0.6rem 1rem; /* plus petit */
+  padding: 0.9rem 1rem; /* taille moyenne */
   border-bottom: 3px solid var(--doré);
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.35); /* plus léger */
+  box-shadow: 0 3px 12px rgba(0,0,0,0.38);
 }
 
 .header-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .logo {
-  width: 55px; /* plus petit */
-  height: 55px;
+  width: 70px;   /* taille moyenne */
+  height: 70px;
   object-fit: contain;
-  filter: drop-shadow(0 0 4px rgba(0,0,0,0.4));
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.45));
 }
 
 .header-text h1 {
   margin: 0;
-  font-size: 1.3rem; /* plus petit */
+  font-size: 1.55rem; /* taille moyenne */
   color: var(--doré);
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
 }
 
 .header-text p {
-  margin: 2px 0 0;
+  margin: 3px 0 0;
   color: var(--gris);
-  font-size: 0.8rem; /* plus petit */
+  font-size: 0.88rem; /* taille moyenne */
 }
 
 /* -------------------------------------- */
