@@ -101,42 +101,44 @@ a:hover {
 /* -------------------------------------- */
 
 /* HEADER STYLE PREMIUM (comme ton image) */
-header {
+.header {
   background: linear-gradient(90deg, #3c2417, #6a3f28, #9a6a45);
-  padding: 1.2rem 1rem;
+  padding: 0.6rem 1rem; /* plus petit */
   border-bottom: 3px solid var(--doré);
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  gap: 12px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35); /* plus léger */
+}
 
 .header-content {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 55px; /* plus petit */
+  height: 55px;
   object-fit: contain;
-  filter: drop-shadow(0 0 6px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.4));
 }
 
 .header-text h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.3rem; /* plus petit */
   color: var(--doré);
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .header-text p {
-  margin: 4px 0 0;
+  margin: 2px 0 0;
   color: var(--gris);
-  font-size: 0.95rem;
+  font-size: 0.8rem; /* plus petit */
 }
 
 /* -------------------------------------- */
