@@ -3,7 +3,7 @@ import { addDoc, collection, Timestamp }
   from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // Liste des mots interdits
-const bannedWords = ["zebi", "9ahba", "fuck", "shit", "omk", "ta7ink"];
+const bannedWords = ["zebi", "9ahba", "fuck", "miboun", "omk", "ta7an","asba","Asba","Zebi","nique","bachoula","pute","9a7ba","kaboul","fara5","oukhetik"];
 
 // Fonction pour vérifier les mots interdits
 function contientMotBanni(texte) {
@@ -61,7 +61,7 @@ document.getElementById("envoyer").addEventListener("click", async () => {
 
   // Vérifier champs vides
   if (!nom || !table || panier.length === 0) {
-    showNotif("⚠️ Remplis les champs et ajoute des produits !");
+    showNotif("okber fi mokhek ya3tik Asba 😄!!");
     return;
   }
 
